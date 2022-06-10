@@ -3,7 +3,7 @@ from .models import Recipe, Comment
 from django_summernote.admin import SummernoteModelAdmin
 
 @admin.register(Recipe)
-class PostAdmin(SummernoteModelAdmin):
+class RecipeAdmin(SummernoteModelAdmin):
 
     list_display = ('title', 'status', 'created_on')
     search_fields = ('title', 'method')
