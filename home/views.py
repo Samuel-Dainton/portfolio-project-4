@@ -43,13 +43,17 @@ class CreateRecipe(View):
         context = {'form': form}
         return render(request, 'create_recipe.html', context)
 
-    def post(self, request, *args, **kwargs):
+    def post(self, slug, request, *args, **kwargs):
         form = RecipeForm()
         if request.method == 'POST':
             form = RecipeForm(request.POST)
             if form.is_valid():
-                form.save()
+                form.instance.name = request.user.username
+                recipe = form.save(commit=False)
+                recipe.author = request.user
+                recipe.save()
                 return redirect('home')
 
         context = {'form': form}
-        return render(request, 'create_recipe.html', context)        
+        return render(request, 'create_recipe.html', context)
+        

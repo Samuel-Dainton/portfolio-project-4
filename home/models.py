@@ -24,7 +24,7 @@ class Recipe(models.Model):
     servings = models.CharField(max_length=2)
     topic = models.ManyToManyField(Topic, blank=False)
     method = models.TextField()
-    status = models.IntegerField(choices=STATUS, default=0)
+    status = models.IntegerField(choices=STATUS, default=1)
     #likes = models.ManyToManyField(
     #    User, related_name='recipe_like', blank=True)
 

@@ -7,5 +7,5 @@ class RecipeForm(ModelForm):
     class Meta:
         model = Recipe
         # Can also use ['title', 'servings', 'method' to exclude other fields]
-        fields = ['title', 'servings', 'method',]
+        fields = ['title', 'servings', 'method', 'topic']
         
