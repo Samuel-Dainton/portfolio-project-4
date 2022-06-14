@@ -1,10 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
-from taggit.managers import TaggableManager
 
 STATUS = ((0, "Draft"), (1, "Published"))
 
+class Topic(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
 
 class Recipe(models.Model):
     """ Recipe data """
@@ -18,11 +22,11 @@ class Recipe(models.Model):
     created_on = models.DateField(auto_now_add=True)
     intro = models.TextField()
     servings = models.CharField(max_length=2)
-    tags = TaggableManager()
+    topic = models.ManyToManyField(Topic, blank=False)
     method = models.TextField()
     status = models.IntegerField(choices=STATUS, default=0)
-    likes = models.ManyToManyField(
-        User, related_name='recipe_like', blank=True)
+    #likes = models.ManyToManyField(
+    #    User, related_name='recipe_like', blank=True)
 
     class Meta:
         ordering = ["created_on"]
@@ -30,8 +34,8 @@ class Recipe(models.Model):
     def __str__(self):
         return self.title
 
-    def number_of_likes(self):
-        return self.likes.count()
+    #def number_of_likes(self):
+    #    return self.likes.count()
 
 class Ingredients(models.Model):
     """ Ingredients data """
@@ -46,11 +50,9 @@ class Ingredients(models.Model):
 class Comment(models.Model):
     post = models.ForeignKey(Recipe, on_delete=models.CASCADE,
                              related_name="comments")
-    name = models.CharField(max_length=80)
-    email = models.EmailField()
     body = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
-    approved = models.BooleanField(default=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     class Meta:
         ordering = ["created_on"]
