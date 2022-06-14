@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic, View
 from .models import Recipe
+from .forms import RecipeForm
 # Create your views here.
 
 class RecipeList(generic.ListView):
@@ -17,7 +18,7 @@ class RecipeDetail(View):
         comments = recipe.comments.order_by('created_on')
         # liked = False
         # if recipe.likes.filter(id=self.request.user.id).exists():
-        #     liked = True
+        #     liked = TrueS
 
         return render(
             request,
@@ -28,3 +29,10 @@ class RecipeDetail(View):
                 # "liked": liked
             }
         )
+
+class CreateRecipe(View):
+    
+    def get(self, request, *args, **kwargs):
+        form = RecipeForm()
+        context = {'form': form}
+        return render(request, 'create_recipe.html', context)
