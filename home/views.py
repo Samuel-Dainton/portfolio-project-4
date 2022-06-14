@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic, View
 from .models import Recipe
 from .forms import RecipeForm
@@ -34,5 +34,22 @@ class CreateRecipe(View):
     
     def get(self, request, *args, **kwargs):
         form = RecipeForm()
+        if request.method == 'POST':
+            form = RecipeForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('home')
+
         context = {'form': form}
         return render(request, 'create_recipe.html', context)
+
+    def post(self, request, *args, **kwargs):
+        form = RecipeForm()
+        if request.method == 'POST':
+            form = RecipeForm(request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('home')
+
+        context = {'form': form}
+        return render(request, 'create_recipe.html', context)        
