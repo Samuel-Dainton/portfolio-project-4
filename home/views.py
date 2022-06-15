@@ -1,7 +1,8 @@
 from django.shortcuts import render
 
 def home(request):
-    return render(request, 'index.html')
+    context = {'recipes': recipes}
+    return render(request, 'home/index.html', context)
 
-def recipe(request):
-    return render(request, 'recipe.html')
+def recipe(request, title):
+    return render(request, 'home/recipe.html')

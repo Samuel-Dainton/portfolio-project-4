@@ -1,16 +1,12 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
+from cloudinary.models import CloudinaryField
 
-class User(AbstractUser):
-    name = models.CharField(max_length=200, null=True)
-    email = models.EmailField(unique=True, null=True)
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    avatar = CloudinaryField('image', null=True, default="recipe_image.png")
     bio = models.TextField(null=True)
-
-    avatar = models.ImageField(null=True, default="avatar.png")
-
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
 
 class Topic(models.Model):
     name = models.CharField(max_length=200)
@@ -26,16 +22,16 @@ class Units(models.Model):
 
 class Ingredients(models.Model):
     quantity = models.CharField(max_length=10)
-    ingredient = models.Charfield(max_length=50)
+    ingredient = models.CharField(max_length=50)
     unit = models.ForeignKey(Units, on_delete=models.SET_NULL, null=True)
 
 class Recipe(models.Model):
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    topic = models.ManyToMany(Topic, on_delete=models.SET_NULL, null=True)
+    topic = models.ManyToManyField(Topic,)
     title = models.CharField(max_length=200)
-    image = models.ImageField(null=True, default="recipe_image.png")
-    prep_time = models.Charfield(blank=True, max_length=50)
-    cook_time = models.Charfield(blank=True, max_length=50)
+    image = CloudinaryField('image', null=True, default="recipe_image.png")
+    prep_time = models.CharField(blank=True, max_length=50)
+    cook_time = models.CharField(blank=True, max_length=50)
     difficulty = models.CharField(max_length=50)
     servings = models.CharField(max_length=50)
     introduction = RichTextField(blank=True, null=True)
@@ -61,7 +57,7 @@ class Comments(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ['-updated', '-created']
+        ordering = ['-created']
 
     def __str__(self):
         return self.body[0:50]

@@ -5,6 +5,6 @@ from . import views
 urlpatterns = [
 
     path('', views.home, name="home"),
-    path('recipe/', views.recipe, name="recipe"),
+    path('recipe/<str:title>', views.recipe, name="recipe"),
 
 ]
