@@ -34,22 +34,22 @@ class Recipe(models.Model):
     topic = models.ManyToMany(Topic, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=200)
     image = models.ImageField(null=True, default="recipe_image.png")
-    prep_time = models.Charfield(max_length=50)
-    cook_time = models.Charfield(max_length=50)
+    prep_time = models.Charfield(blank=True, max_length=50)
+    cook_time = models.Charfield(blank=True, max_length=50)
     difficulty = models.CharField(max_length=50)
     servings = models.CharField(max_length=50)
     introduction = RichTextField(blank=True, null=True)
     method = RichTextField(blank=True, null=True)
     ingredients = models.ForeignKey(Ingredients, on_delete=models.SET_NULL, null=True)
-    calories = models.CharField(max_length=50)
-    fat = models.CharField(max_length=50)
-    carbs =models.CharField(max_length=50)
-    protein = models.CharField(max_length=50)
-    allergy_info = models.TextField()
+    calories = models.CharField(blank=True, max_length=50)
+    fat = models.CharField(blank=True, max_length=50)
+    carbs =models.CharField(blank=True, max_length=50)
+    protein = models.CharField(blank=True, max_length=50)
+    allergy_info = models.TextField(blank=True, )
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-    ordering = ['-created']
+        ordering = ['-created']
 
     def __str__(self):
         return self.title
