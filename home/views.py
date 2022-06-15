@@ -34,26 +34,20 @@ class CreateRecipe(View):
     
     def get(self, request, *args, **kwargs):
         form = RecipeForm()
-        if request.method == 'POST':
-            form = RecipeForm(request.POST)
-            if form.is_valid():
-                form.save()
-                return redirect('home')
-
         context = {'form': form}
         return render(request, 'create_recipe.html', context)
 
-    def post(self, slug, request, *args, **kwargs):
-        form = RecipeForm()
-        if request.method == 'POST':
-            form = RecipeForm(request.POST)
-            if form.is_valid():
-                form.instance.name = request.user.username
-                recipe = form.save(commit=False)
-                recipe.author = request.user
-                recipe.save()
-                return redirect('home')
-
+    def post(self, request, slug, *args, **kwargs):
+        prepopulated_fields = {'slug': ('title',)}
+        form = RecipeForm(request.POST)
+        if form.is_valid():
+            form.instance.name = request.user.username
+            recipe = form.save(commit=False)
+            recipe.author = request.user
+            recipe.save()
+            return redirect('home')
+        else:
+            form = RecipeForm()
         context = {'form': form}
         return render(request, 'create_recipe.html', context)
         

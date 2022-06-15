@@ -18,6 +18,6 @@ class RecipeAdmin(SummernoteModelAdmin):
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
 
-    list_display = ('user', 'body', 'post', 'created_on')
+    list_display = ('user', 'body', 'created_on')
     list_filter = ('created_on',)
     search_fields = ('email', 'body')

@@ -8,4 +8,4 @@ class RecipeForm(ModelForm):
         model = Recipe
         # Can also use ['title', 'servings', 'method' to exclude other fields]
         fields = ['title', 'servings', 'method', 'topic']
-        
+        prepopulated_fields = {'slug': ('title',)}
