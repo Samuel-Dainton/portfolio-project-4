@@ -15,7 +15,9 @@
                 <a href="{% url 'delete-recipe' recipe.title %}">Delete Recipe</a>
                 <h5><a href="/recipe/{{recipe.title}}">{{recipe.title}}</a></h5>
                 <span>By {{recipe.author.username}}</span>
-                <span>{{recipe.topic.name}}</span>
+                {% for topic in recipe.topic.all %}
+                    <span>{{topic.name}}</span>
+                {% endfor %}
             </div>
             {% endfor %}
         </div>
