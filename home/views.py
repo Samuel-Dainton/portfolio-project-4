@@ -1,11 +1,9 @@
 from django.shortcuts import render, redirect
-from .models import Recipe, Topic
+from .models import Recipe
 from .forms import RecipeForm
 
 def topic(request):
-    topics = Topic.objects.all()
-    context = {'topics': topics}
-    return render(request, 'home/browse.html', context)
+    return render(request, 'home/browse.html')
 
 def home(request):
     recipes = Recipe.objects.all()
