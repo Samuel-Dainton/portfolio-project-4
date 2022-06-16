@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Recipe
 from .forms import RecipeForm
 
@@ -15,5 +15,12 @@ def recipe(request, title):
 def createRecipe(request):
 
     form = RecipeForm()
+    
+    if request.method == 'POST':
+        form = RecipeForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+
     context = {'form': form}
     return render(request, 'home/recipe_form.html', context)
