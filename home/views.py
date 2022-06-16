@@ -7,5 +7,6 @@ def home(request):
     return render(request, 'home/index.html', context)
 
 def recipe(request, title):
-    recipe = Recipe.objects.get(title=title)
-    return render(request, 'home/recipe.html')
+    recipes = Recipe.objects.get(title=title)
+    context = {'recipes': recipes}
+    return render(request, 'home/recipe.html', context)

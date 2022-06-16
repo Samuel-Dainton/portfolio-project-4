@@ -9,7 +9,9 @@
         <div class="col-8">
             {% for recipe in recipes %}
             <div class="card">
-                <h5><a href="/recipe/{{recipe.title}}">{{recipe.title}}</h5></a>
+                <h5><a href="/recipe/{{recipe.title}}">{{recipe.title}}</a></h5>
+                <span>By {{recipe.author.username}}</span>
+                <span>{{recipe.topic.name}}</span>
             </div>
             {% endfor %}
         </div>
