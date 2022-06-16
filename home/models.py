@@ -27,7 +27,7 @@ class Recipe(models.Model):
     method = RichTextField(blank=True, null=True)
     calories = models.CharField(blank=True, null=True, max_length=50)
     fat = models.CharField(blank=True, null=True, max_length=50)
-    carbs =models.CharField(blank=True, null=True, max_length=50)
+    carbs = models.CharField(blank=True, null=True, max_length=50)
     protein = models.CharField(blank=True, null=True, max_length=50)
     allergy_info = models.TextField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
