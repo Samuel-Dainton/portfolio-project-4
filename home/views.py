@@ -24,3 +24,17 @@ def createRecipe(request):
 
     context = {'form': form}
     return render(request, 'home/recipe_form.html', context)
+
+def updateRecipe(request, title):
+
+    recipe = Recipe.objects.get(title=title)
+    form = RecipeForm(instance=recipe)
+    
+    if request.method == 'POST':
+        form = RecipeForm(request.POST, instance=recipe)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+
+    context = {'form': form}
+    return render(request, 'home/recipe_form.html', context)

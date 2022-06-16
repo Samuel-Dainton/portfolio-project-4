@@ -11,6 +11,7 @@
         <div class="col-8">
             {% for recipe in recipes %}
             <div class="card">
+                <a href="{% url 'update-recipe' recipe.title %}">Update Recipe</a>
                 <h5><a href="/recipe/{{recipe.title}}">{{recipe.title}}</a></h5>
                 <span>By {{recipe.author.username}}</span>
                 <span>{{recipe.topic.name}}</span>
