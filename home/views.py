@@ -1,6 +1,11 @@
 from django.shortcuts import render, redirect
-from .models import Recipe
+from .models import Recipe, Topic
 from .forms import RecipeForm
+
+def topic(request):
+    topics = Topic.objects.all()
+    context = {'topics': topics}
+    return render(request, 'home/browse.html', context)
 
 def home(request):
     recipes = Recipe.objects.all()
@@ -45,3 +50,4 @@ def deleteRecipe(request, title):
         recipe.delete()
         return redirect('home')
     return render(request, 'home/delete.html', {'selected_object':recipe})
+
