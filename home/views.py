@@ -6,8 +6,8 @@ def topic(request):
     return render(request, 'home/browse.html')
 
 def home(request):
-    q = request.GET.get('q')
-    recipes = Recipe.objects.filter(topic__name=q)
+    q = request.GET.get('q') if request.GET.get('q') != None else ''
+    recipes = Recipe.objects.filter(topic__name__icontains=q)
     context = {'recipes': recipes}
     return render(request, 'home/index.html', context)
 
