@@ -17,7 +17,9 @@ def home(request):
         # Q(ingredient__icontains=q)
     )
 
-    context = {'recipes': recipes}
+    recipe_count = recipes.count()
+
+    context = {'recipes': recipes, 'recipe_count': recipe_count}
     return render(request, 'home/index.html', context)
 
 
