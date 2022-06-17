@@ -1,15 +1,25 @@
 from django.shortcuts import render, redirect
+from django.db.models import Q
 from .models import Recipe
 from .forms import RecipeForm
+
 
 def topic(request):
     return render(request, 'home/browse.html')
 
 def home(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
-    recipes = Recipe.objects.filter(topic__name__icontains=q)
+
+    recipes = Recipe.objects.filter(
+        Q(topic__name__icontains=q) |
+        Q(title__icontains=q) 
+        # TODO search comes from recipe but ingredients is not in recipe. (Don't forget to add | for or)
+        # Q(ingredient__icontains=q)
+    )
+
     context = {'recipes': recipes}
     return render(request, 'home/index.html', context)
+
 
 def recipe(request, title):
     recipes = Recipe.objects.get(title=title)
