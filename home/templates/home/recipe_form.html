@@ -11,7 +11,7 @@
                 <input type="submit" value="Submit">
             </form>
 
-            <form action="{% url 'add-ingredient' recipe.id %}" method="POST">
+            <form action="" method="POST">
                 {% csrf_token %}
                 {{ ingredient_form.as_p }}
                 <input type="submit" class="btn" value="Add Ingredient">

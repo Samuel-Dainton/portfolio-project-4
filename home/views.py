@@ -41,19 +41,17 @@ def createRecipe(request):
     context = {'form': form}
     return render(request, 'home/recipe_form.html', context)
 
-def addIngredient(request, title):
+def addIngredient(request):
 
-    form = IngredientForm()
+    ingredient_form = IngredientForm()
 
     if request.method == 'POST':
-        form = IngredientForm(request.POST)
-        if form.is_valid():
-            new_ingredient = form.save()
-            new_ingredient.title = title
-            new_ingredient.save()
+        ingredient_form = IngredientForm(request.POST)
+        if ingredient_form.is_valid():
+            ingredient_form.save()
             return redirect('home')
 
-    context = {'form': form}
+    context = {'ingredient_form': ingredient_form}
     return render(request, 'home/recipe_form.html', context)
 
 def updateRecipe(request, title):
