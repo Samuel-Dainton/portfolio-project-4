@@ -1,9 +1,11 @@
 
 <h1>Seasonal</h1>
 
+<div>
+    <a href="{% url 'home' %}">All</a>
+</div>
 {% for topic in topics %}
-<span>{{topic}}</span>
+<div class="container">
+    <a href="{% url 'home' %}?q={{topic.name}}">{{topic.name}}</a>
+</div>
 {% endfor %}
-
-{{topics}}
-
