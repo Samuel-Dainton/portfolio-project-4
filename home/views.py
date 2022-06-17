@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.db.models import Q
 from .models import Recipe
-from .forms import RecipeForm
+from .forms import RecipeForm, IngredientForm
 
 
 def topic(request):
@@ -34,6 +34,21 @@ def createRecipe(request):
         form = RecipeForm(request.POST)
         if form.is_valid():
             form.save()
+            return redirect('home')
+
+    context = {'form': form}
+    return render(request, 'home/recipe_form.html', context)
+
+def addIngredient(request, title):
+
+    form = IngredientForm()
+
+    if request.method == 'POST':
+        form = IngredientForm(request.POST)
+        if form.is_valid():
+            new_ingredient = form.save()
+            new_ingredient.title = title
+            new_ingredient.save()
             return redirect('home')
 
     context = {'form': form}

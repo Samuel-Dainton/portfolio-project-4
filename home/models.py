@@ -41,7 +41,7 @@ class Recipe(models.Model):
     def __str__(self):
         return self.title
 
-class Ingredients(models.Model):
+class Ingredient(models.Model):
     ingredient = models.CharField(max_length=50)
     # TODO should it not be positive int field?
     quantity = models.CharField(max_length=10)
