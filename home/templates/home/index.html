@@ -1,10 +1,13 @@
 {% extends 'base.html' %}
 
+{% load static %}
 
 {% block content %}
 <h1>Home</h1>
 
 <h4>Search from over {{recipe_count}} recipes!</h4>
+
+<img src="{% static 'images/food.jpg' %}" alt="A table full of food.">
 
 <a href="{% url 'create-recipe' %}">Create Recipe</a>
 
