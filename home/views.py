@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.db.models import Q
-from .models import Recipe
+from django.contrib.auth.decorators import login_required
+from .models import Recipe, Ingredient
 from .forms import RecipeForm, IngredientForm
 
 
@@ -18,16 +19,19 @@ def home(request):
     )
 
     recipe_count = recipes.count()
+    ingredient = Ingredient.objects.name
 
-    context = {'recipes': recipes, 'recipe_count': recipe_count}
+    context = {'recipes': recipes, 'recipe_count': recipe_count, 'ingredient': ingredient,}
     return render(request, 'home/index.html', context)
 
 
 def recipe(request, title):
-    recipes = Recipe.objects.get(title=title)
-    context = {'recipes': recipes}
+    recipe = Recipe.objects.get(title=title)
+    context = {'recipe': recipe}
     return render(request, 'home/recipe.html', context)
 
+
+@login_required
 def createRecipe(request):
 
     form = RecipeForm()
@@ -38,9 +42,11 @@ def createRecipe(request):
             form.save()
             return redirect('home')
 
-    context = {'form': form}
+    context = {'form': form, 'ingredient_form': IngredientForm()}
     return render(request, 'home/recipe_form.html', context)
 
+
+@login_required()
 def addIngredient(request):
 
     ingredient_form = IngredientForm()
@@ -54,6 +60,8 @@ def addIngredient(request):
     context = {'ingredient_form': ingredient_form}
     return render(request, 'home/recipe_form.html', context)
 
+
+@login_required()
 def updateRecipe(request, title):
 
     recipe = Recipe.objects.get(title=title)
@@ -68,6 +76,8 @@ def updateRecipe(request, title):
     context = {'form': form}
     return render(request, 'home/recipe_form.html', context)
 
+
+@login_required()
 def deleteRecipe(request, title):
     recipe = Recipe.objects.get(title=title)
     if request.method == 'POST':
