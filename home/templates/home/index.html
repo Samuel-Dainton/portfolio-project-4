@@ -13,8 +13,10 @@
         <div class="col-8">
             {% for recipe in recipes %}
             <div class="card">
+                {% if request.user == recipe.author %}
                 <a href="{% url 'update-recipe' recipe.title %}">Update Recipe</a>
                 <a href="{% url 'delete-recipe' recipe.title %}">Delete Recipe</a>
+                {% endif %}
                 <h5><a href="/recipe/{{recipe.title}}">{{recipe.title}}</a></h5>
                 <span>By {{recipe.author.username}}</span>
                 {% for topic in recipe.topic.all %}
