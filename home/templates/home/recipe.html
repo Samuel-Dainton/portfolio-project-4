@@ -9,4 +9,27 @@
 
 <p>{{recipe.method}}</p>
 
+<div>
+    <h3>Comments</h3>
+    <hr>
+
+    {% for comment in comments %}
+
+    <div>
+        <p>{{comment.user}} - {{comment.created|timesince}} ago.</p>
+
+        <p>{{comment.body}}</p>
+    </div>
+
+    {% endfor %}
+</div>
+
+{% if request.user.is_authenticated %}
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ comment_form.as_p }}
+    <input type="submit" class="btn" value="Submit">
+</form>
+{% endif %}
+
 {% endblock content %}

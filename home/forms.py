@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Recipe, Ingredient
+from .models import Recipe, Ingredient, Comment
 
 class RecipeForm(ModelForm):
     class Meta: 
@@ -11,3 +11,8 @@ class IngredientForm(ModelForm):
     class Meta:
         model = Ingredient
         fields = '__all__'
+
+class CommentForm(ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('body',)

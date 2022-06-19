@@ -55,15 +55,15 @@ class Ingredient(models.Model):
     def __str__(self):
         return self.ingredient
 
-class Comments(models.Model):
+class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
-    body = models.TextField()
+    body = RichTextField()
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         ordering = ['-created']
-        verbose_name_plural = 'Comments'
+
 
     def __str__(self):
         return self.body[0:50]

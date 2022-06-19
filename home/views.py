@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
-from .models import Recipe, Ingredient
-from .forms import RecipeForm, IngredientForm
+from .models import Recipe, Ingredient, Comment
+from .forms import RecipeForm, IngredientForm, CommentForm
 
 
 def topic(request):
@@ -28,7 +28,22 @@ def home(request):
 
 def recipe(request, title):
     recipe = Recipe.objects.get(title=title)
-    context = {'recipe': recipe}
+    comments = recipe.comment_set.all().order_by('-created')
+
+    comment_form = CommentForm()
+
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            comment_form.instance.name = request.user.username
+            comment = comment_form.save(commit=False)
+            comment.recipe = recipe.title
+            comment_form.save()
+        return redirect('recipe', title=recipe.title)
+    else: 
+        comment_form = CommentForm()
+
+    context = {'recipe': recipe, 'comments':comments, 'comment_form':comment_form,}
     return render(request, 'home/recipe.html', context)
 
 
