@@ -25,11 +25,12 @@
 </div>
 
 {% if request.user.is_authenticated %}
-<form action="" method="POST">
-    {% csrf_token %}
-    {{ comment_form.as_p }}
-    <input type="submit" class="btn" value="Submit">
-</form>
+<div>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <input type="text" name="body" placeholder="Write a comment here!">
+    </form>
+</div>
 {% endif %}
 
 {% endblock content %}

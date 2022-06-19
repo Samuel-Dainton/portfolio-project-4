@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from .models import Recipe, Ingredient, Comment
-from .forms import RecipeForm, IngredientForm, CommentForm
+from .forms import RecipeForm, IngredientForm
 
 
 def topic(request):
@@ -30,20 +30,15 @@ def recipe(request, title):
     recipe = Recipe.objects.get(title=title)
     comments = recipe.comment_set.all().order_by('-created')
 
-    comment_form = CommentForm()
-
     if request.method == 'POST':
-        comment_form = CommentForm(request.POST)
-        if comment_form.is_valid():
-            comment_form.instance.name = request.user.username
-            comment = comment_form.save(commit=False)
-            comment.recipe = recipe.title
-            comment_form.save()
+        message = Comment.objects.create(
+            user = request.user,
+            recipe = recipe,
+            body = request.POST.get('body')
+        )
         return redirect('recipe', title=recipe.title)
-    else: 
-        comment_form = CommentForm()
 
-    context = {'recipe': recipe, 'comments':comments, 'comment_form':comment_form,}
+    context = {'recipe': recipe, 'comments':comments}
     return render(request, 'home/recipe.html', context)
 
 
