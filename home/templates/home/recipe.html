@@ -19,6 +19,9 @@
         <p>{{comment.user}} - {{comment.created|timesince}} ago.</p>
 
         <p>{{comment.body}}</p>
+        {% if request.user == comment.user %}
+        <a href="{% url 'delete-comment' comment.id %}">Delete Comment</a>
+        {% endif %}
     </div>
 
     {% endfor %}

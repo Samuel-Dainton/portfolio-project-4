@@ -31,7 +31,7 @@ def recipe(request, title):
     comments = recipe.comment_set.all().order_by('-created')
 
     if request.method == 'POST':
-        message = Comment.objects.create(
+        comment = Comment.objects.create(
             user = request.user,
             recipe = recipe,
             body = request.POST.get('body')
@@ -101,5 +101,17 @@ def deleteRecipe(request, title):
     if request.method == 'POST':
         recipe.delete()
         return redirect('home')
-    return render(request, 'home/delete.html', {'selected_object':recipe})
+    return render(request, 'home/delete.html', {'selected_object': recipe})
+
+@login_required()
+def deleteComment(request, pk):
+    comment = Comment.objects.get(id=pk)
+
+    if request.user != comment.user:
+        return HttpResponse('This is not your recipe to delete.')
+
+    if request.method == 'POST':
+        comment.delete()
+        return redirect('home')
+    return render(request, 'home/delete.html', {'selected_object': comment})
 

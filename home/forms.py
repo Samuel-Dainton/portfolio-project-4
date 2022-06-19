@@ -12,7 +12,7 @@ class IngredientForm(ModelForm):
         model = Ingredient
         fields = '__all__'
 
-class CommentForm(ModelForm):
-    class Meta:
-        model = Comment
-        fields = ('body',)
+# class CommentForm(ModelForm):
+#     class Meta:
+#         model = Comment
+#         fields = ('body',)
