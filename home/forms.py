@@ -6,11 +6,14 @@ class RecipeForm(ModelForm):
         model = Recipe
         # Can use ['name', 'method'...] to select specific values.
         fields = '__all__'
+        exclude = ['author',]
 
 class IngredientForm(ModelForm):
     class Meta:
         model = Ingredient
         fields = '__all__'
+        exclude = ['recipe',]
+        recipe = Recipe.title
 
 # class CommentForm(ModelForm):
 #     class Meta:
