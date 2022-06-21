@@ -1,3 +1,22 @@
-body{
+body {
     background-color: antiquewhite;
+}
+
+.navbar-brand {
+    background: url("../images/logo_small.png") no-repeat left;
+    height: 7rem;
+    width: 16.5rem;
+}
+
+/* Margin top for every page */
+.page-margin {
+    margin-top: 4rem;
+}
+
+.fa-search {
+    margin: 1rem;
+}
+
+.search-bar {
+    width: 80%;
 }

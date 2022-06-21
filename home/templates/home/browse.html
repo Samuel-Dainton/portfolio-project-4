@@ -1,11 +1,7 @@
+<a href="{% url 'home' %}">All</a>
 
-<h1>Seasonal</h1>
-
-<div>
-    <a href="{% url 'home' %}">All</a>
-</div>
 {% for topic in topics %}
-<div class="container">
-    <a href="{% url 'home' %}?q={{topic.name}}">{{topic.name}}</a>
-</div>
+
+<a href="{% url 'home' %}?q={{topic.name}}">{{topic.name}}</a>
+
 {% endfor %}
