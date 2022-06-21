@@ -1,10 +1,11 @@
 body {
-    
+    font-family: 'Alegreya', serif;
+    font-weight: 700;
 }
 
 a {
     text-decoration: none;
-    color: inherit;
+    color: black;
 }
 
 a:hover {
@@ -47,7 +48,7 @@ a:hover {
 }
 
 .carousel-image-1 {
-    background-image: url("/static/images/food.jpg") no-repeat;
+    background: url("/static/images/food.jpg") no-repeat;
 }
 
 .fa-search {
