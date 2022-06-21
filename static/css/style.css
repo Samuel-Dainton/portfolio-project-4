@@ -1,16 +1,53 @@
 body {
-    background-color: antiquewhite;
+    
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    background-color: rgba(49, 175, 180, 0.4);
+  }
+
+.mt-1 {
+    margin-top: 1rem;
+}
+
+.mt-2 {
+    margin-top: 2rem;
+}
+
+.mt-3 {
+    margin-top: 3rem;
+}
+
+.mt-5 {
+    margin-top: 5rem;
+}
+
+.mb-5 {
+    margin-bottom: 5rem;
 }
 
 .navbar-brand {
-    background: url("../images/logo_small.png") no-repeat left;
-    height: 7rem;
+    background: url("../images/logo_small.png") no-repeat;
+    height: 5rem;
     width: 16.5rem;
 }
 
-/* Margin top for every page */
-.page-margin {
+.carousel-container {
+    background-color: rgba(49, 175, 180, 0.4);
     margin-top: 4rem;
+}
+
+.carousel-item {
+    height: 400px;
+}
+
+.carousel-image-1 {
+    background-image: url("/static/images/food.jpg") no-repeat;
 }
 
 .fa-search {
@@ -19,4 +56,23 @@ body {
 
 .search-bar {
     width: 80%;
+    border: 2px solid #31AFB4;
+}
+
+.topic-button {
+    background-color: #31AFB4;
+    padding: 0.3rem;
+    border-radius: 5px; 
+}
+
+.test {
+    background-image: url("/static/images/food.jpg");
+}
+
+
+
+@media (max-width: 575px) {
+    .carousel-container {
+        margin-top: 0px;
+    }
 }

@@ -1,7 +1,17 @@
-<a href="{% url 'home' %}">All</a>
+<div class="container mb-5">
+    <div class="row height d-flex justify-content-center align-items-center">
+        <div class="col-md-8 text-center">
+            <h5 class="mt-2">Click on a topic to further refine your search results.</h5>
+        </div>
+        <div class="col-md-8 text-center">
 
-{% for topic in topics %}
+            <a class="topic-button" href="{% url 'home' %}">All</a>
 
-<a href="{% url 'home' %}?q={{topic.name}}">{{topic.name}}</a>
+            {% for topic in topics %}
 
-{% endfor %}
+            <a class="topic-button" href="{% url 'home' %}?q={{topic.name}}">{{topic.name}}</a>
+
+            {% endfor %}
+        </div>
+    </div>
+</div>
