@@ -47,8 +47,21 @@ a:hover {
     height: 400px;
 }
 
+.carousel-caption {
+    background-color: rgba(49, 175, 180, 0.6);
+    border-radius: 5px;
+}
+
 .carousel-image-1 {
-    background: url("/static/images/food.jpg") no-repeat;
+    background: url("/static/images/food-spread.png") no-repeat;
+}
+
+.carousel-image-2 {
+    background: url("/static/images/crying-tiger-salad.png") no-repeat;
+}
+
+.carousel-image-3 {
+    background: url("/static/images/baker.png") no-repeat;
 }
 
 .fa-search {
