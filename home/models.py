@@ -46,6 +46,8 @@ class Ingredient(models.Model):
     # TODO should it not be positive int field?
     quantity = models.CharField(max_length=10)
     unit = models.CharField(max_length=50, blank=True, null=True)
+
+    description = models.CharField(max_length=50, blank=True, null=True) # Stems seperated, crushed, peeled
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
     
     # TODO reset database change ingredients to singular
