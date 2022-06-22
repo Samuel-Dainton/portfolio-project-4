@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
 from cloudinary.models import CloudinaryField
 
+from .validators import validate_unit_of_measure
+
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     avatar = CloudinaryField('image', null=True, default="recipe_image.png")
@@ -45,12 +47,11 @@ class Ingredient(models.Model):
     ingredient = models.CharField(max_length=50)
     # TODO should it not be positive int field?
     quantity = models.CharField(max_length=10)
-    unit = models.CharField(max_length=50, blank=True, null=True)
-
-    description = models.CharField(max_length=50, blank=True, null=True) # Stems seperated, crushed, peeled
+    unit = models.CharField(max_length=50, blank=True, null=True, validators=[validate_unit_of_measure]) # g, oz, ml
+    other_unit = models.CharField(max_length=50, blank=True, null=True) # bunch, handfull
+    description = models.CharField(max_length=50, blank=True, null=True) # stems seperated, crushed, peeled
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
-    
-    # TODO reset database change ingredients to singular
+
     class Meta:
         verbose_name_plural = 'Ingredients'
 
