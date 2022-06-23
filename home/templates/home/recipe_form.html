@@ -5,17 +5,16 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
+            <h1>Update Recipe</h1>
             <form method="POST" action="">
                 {% csrf_token %}
                 {{form.as_p}}
-                <input type="submit" value="Submit">
-            </form>
 
-            <!-- TODO add button 'onclick' add form -->
-            <form action="" method="POST">
-                {% csrf_token %}
-                {{ ingredient_form.as_p }}
-                <input type="submit" class="btn" value="Add Ingredient">
+                {% if form_2 %}
+                <h3>Ingredients</h3>
+                {{form_2.as_p}}
+                {% endif %}
+                <input type="submit" value="Submit">
             </form>
         </div>
     </div>

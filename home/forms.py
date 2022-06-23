@@ -12,7 +12,7 @@ class IngredientForm(ModelForm):
     class Meta:
         model = Ingredient
         fields = '__all__'
-        exclude = ['recipe',]
+        exclude = ['recipe', 'quantity_as_float']
         recipe = Recipe.title
 
 # class CommentForm(ModelForm):

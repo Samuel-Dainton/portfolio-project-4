@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect, render, get_object_or_404
+
 from .models import Recipe, Ingredient, Comment
 from .forms import RecipeForm, IngredientForm
 
@@ -58,37 +60,24 @@ def createRecipe(request):
 
 
 @login_required()
-def addIngredient(request):
-
-    ingredient_form = IngredientForm()
-
-    if request.method == 'POST':
-        ingredient_form = IngredientForm(request.POST)
-        if ingredient_form.is_valid():
-            ingredient_form.save()
-            return redirect('home')
-
-    context = {'ingredient_form': ingredient_form}
-    return render(request, 'home/recipe_form.html', context)
-
-
-@login_required()
 def updateRecipe(request, title):
 
-    recipe = Recipe.objects.get(title=title)
-    form = RecipeForm(instance=recipe)
+    obj = get_object_or_404(Recipe, title=title, author=request.user)
+    form = RecipeForm(request.POST or None, instance=obj)
+    form_2 = IngredientForm(request.POST or None)
+    title = Recipe.title
+
+    context = {'form': form, 'form_2': form_2, 'object': obj}
     
-    if request.user != recipe.author:
-        return HttpResponse('This is not your recipe to edit.')
-
     if request.method == 'POST':
-        form = RecipeForm(request.POST, instance=recipe)
-        if form.is_valid():
-            form.save()
-            return redirect('home')
+        if all([form.is_valid(), form_2.is_valid()]):
+            form.save(commit=False)
+            form_2.save(commit=False)
+            print('form', form.cleaned_data)
+            print('form_2', form_2.cleaned_data)
+            context['message'] = 'Recipe Updated'
 
-    context = {'form': form}
-    return render(request, 'home/recipe_form.html', context)
+    return render(request, "home/recipe_form.html", context)
 
 
 @login_required()
