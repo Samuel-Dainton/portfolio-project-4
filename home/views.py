@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render, get_object_or_404
+from django.forms.models import modelformset_factory
 
 from .models import Recipe, Ingredient, Comment
 from .forms import RecipeForm, IngredientForm
@@ -52,6 +53,7 @@ def createRecipe(request):
     if request.method == 'POST':
         form = RecipeForm(request.POST)
         if form.is_valid():
+            form.instance.author = request.user
             form.save()
             return redirect('home')
 
@@ -64,17 +66,23 @@ def updateRecipe(request, title):
 
     obj = get_object_or_404(Recipe, title=title, author=request.user)
     form = RecipeForm(request.POST or None, instance=obj)
-    form_2 = IngredientForm(request.POST or None)
-    title = Recipe.title
-
-    context = {'form': form, 'form_2': form_2, 'object': obj}
+    # form_2 = IngredientForm(request.POST or None)
+    
+    IngredientFormset = modelformset_factory(Ingredient, form=IngredientForm, extra=0)
+    qs = obj.ingredient_set.all()
+    formset = IngredientFormset(request.POST or None, queryset=qs)
+    context = {'form': form, 'formset': formset, 'object': obj}
     
     if request.method == 'POST':
-        if all([form.is_valid(), form_2.is_valid()]):
-            form.save(commit=False)
-            form_2.save(commit=False)
-            print('form', form.cleaned_data)
-            print('form_2', form_2.cleaned_data)
+        if all([form.is_valid(), formset.is_valid()]):
+            parent = form.save(commit=False)
+            parent.save()
+            for form in formset:
+                child = form.save(commit=False)
+                if child.recipe is None:
+                    child.recipe = parent
+                child.save()
+
             context['message'] = 'Recipe Updated'
 
     return render(request, "home/recipe_form.html", context)
