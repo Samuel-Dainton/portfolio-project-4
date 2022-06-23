@@ -12,12 +12,41 @@
 
                 {% if formset %}
                 <h3>Ingredients</h3>
-                {{formset.as_p}}
+                {{ formset.management_form }}
+                <div id="ingredient-form-list">
+                {% for form in formset %}
+                    <div class="ingredient-form">
+                        {{ form.as.p }}
+                    </div>
+                {% endfor %}
+                </div>
+                <div id="empty-form" class="">{{ formset.empty_form }}</div>
+                <button id="add-ingredient" type="button">Add Ingredient</button>
                 {% endif %}
                 <input type="submit" value="Submit">
             </form>
         </div>
     </div>
 </div>
+
+<script>
+    
+    const addMoreBtn = document.getElementById('add-ingredient')
+    
+    addMoreBtn.addEventListener('click', add_new_form)
+
+    function add_new_form(event) {
+        if (event) {
+            event.preventDefault()
+        }
+        const emptyFormTarget = document.getElementById('ingredient-form-list')
+        // cloneNode clones the form.
+        const emptyForm = document.getElementById('empty-form').cloneNode(true)
+        // sets the class for the clone
+        emptyForm.setAttribute('class', 'ingredient-form')
+        // appends the clone to the container div
+        emptyFormTarget.append(emptyForm)
+    }
+</script>
 
 {% endblock content %}

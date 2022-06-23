@@ -79,8 +79,7 @@ def updateRecipe(request, title):
             parent.save()
             for form in formset:
                 child = form.save(commit=False)
-                if child.recipe is None:
-                    child.recipe = parent
+                child.recipe = parent
                 child.save()
 
             context['message'] = 'Recipe Updated'
