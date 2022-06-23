@@ -4,6 +4,7 @@ from .models import Recipe, Topic, Ingredient, Comment
 class IngredientInline(admin.StackedInline):
     model = Ingredient
     extra = 0
+    readonly_fields = ['quantity_as_float']
 
 class RecipeAdmin(admin.ModelAdmin):
     inlines = [IngredientInline]

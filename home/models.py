@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
 from cloudinary.models import CloudinaryField
-
+from .utils import number_str_to_float
 from .validators import validate_unit_of_measure
 
 class UserProfile(models.Model):
@@ -47,13 +47,22 @@ class Ingredient(models.Model):
     ingredient = models.CharField(max_length=50)
     # TODO should it not be positive int field?
     quantity = models.CharField(max_length=10)
+    # Converts the user input into a valid number for later calculating conversions like cups to ml. 1 1/4 => 1.25 
+    quantity_as_float = models.FloatField(blank=True, null=True)
+
     unit = models.CharField(max_length=50, blank=True, null=True, validators=[validate_unit_of_measure]) # g, oz, ml
     other_unit = models.CharField(max_length=50, blank=True, null=True) # bunch, handfull
     description = models.CharField(max_length=50, blank=True, null=True) # stems seperated, crushed, peeled
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
 
-    class Meta:
-        verbose_name_plural = 'Ingredients'
+    def save(self, *args, **kwargs):
+        qty = self.quantity
+        qty_as_float, qty_as_float_success = number_str_to_float(qty)
+        if qty_as_float_success:
+            self.quantity_as_float = qty_as_float
+        else:
+            self.quantity_as_float = None
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.ingredient
