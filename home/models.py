@@ -1,3 +1,5 @@
+import pint
+
 from django.db import models
 from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
@@ -54,6 +56,23 @@ class Ingredient(models.Model):
     other_unit = models.CharField(max_length=50, blank=True, null=True) # bunch, handfull
     description = models.CharField(max_length=50, blank=True, null=True) # stems seperated, crushed, peeled
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
+
+    def convert_to_system(self, system="mks"):
+        if self.quantity_as_float is None:
+            return None
+        ureg = pint.UnitRegistry(system=system)
+        measurement = self.quantity_as_float * ureg[self.unit.lower()]
+        return measurement #.to_base_units()
+
+    def as_mks(self):
+        # meter, kilogram, second (metric)
+        measurement = self.convert_to_system(system='mks')
+        return measurement.to_base_units()
+
+    def as_US(self):
+        # cups, oz
+        measurement = self.convert_to_system(system='US')
+        return measurement.to_base_units()
 
     def save(self, *args, **kwargs):
         qty = self.quantity

@@ -1,4 +1,3 @@
-
 from fractions import Fraction
 
 def number_str_to_float(amount_str:str) -> (any, bool):
