@@ -90,3 +90,7 @@ a:hover {
         margin-top: 0px;
     }
 }
+
+.hidden-form {
+    display: none;
+}

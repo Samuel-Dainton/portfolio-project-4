@@ -20,7 +20,8 @@
                     </div>
                 {% endfor %}
                 </div>
-                <div id="empty-form" class="">{{ formset.empty_form }}</div>
+                <!-- Formset is placed but initial form is hidden until user clicks the add ingredient button, adding another form without the hidden class. -->
+                <div id="empty-form" class="hidden-form">{{ formset.empty_form }}</div>
                 <button id="add-ingredient" type="button">Add Ingredient</button>
                 {% endif %}
                 <input type="submit" value="Submit">
@@ -32,20 +33,31 @@
 <script>
     
     const addMoreBtn = document.getElementById('add-ingredient')
+    const totalNewForms = document.getElementById('id_form-TOTAL_FORMS')
     
+
     addMoreBtn.addEventListener('click', add_new_form)
 
     function add_new_form(event) {
         if (event) {
             event.preventDefault()
         }
+        const currentIngredientForms = document.getElementsByClassName('ingredient-form')
+        const currentFormCount = currentIngredientForms.length
+
         const emptyFormTarget = document.getElementById('ingredient-form-list')
         // cloneNode clones the form.
-        const emptyForm = document.getElementById('empty-form').cloneNode(true)
+        const copyEmptyForm = document.getElementById('empty-form').cloneNode(true)
         // sets the class for the clone
-        emptyForm.setAttribute('class', 'ingredient-form')
+        copyEmptyForm.setAttribute('class', 'ingredient-form')
+        // adds an id to the cloned form based on the current number of new forms
+        copyEmptyForm.setAttribute('id', `form-${currentFormCount}`)
+        // regular expression - takes out the prefix added automatically and replaces it with the formcount + 1
+        const regex = new RegExp('__prefix__', 'g')
+        copyEmptyForm.innerHTML = copyEmptyForm.innerHTML.replace(regex, currentFormCount)
+        totalNewForms.setAttribute('value', currentFormCount + 1)
         // appends the clone to the container div
-        emptyFormTarget.append(emptyForm)
+        emptyFormTarget.append(copyEmptyForm)
     }
 </script>
 
