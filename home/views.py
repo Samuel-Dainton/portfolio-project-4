@@ -73,16 +73,16 @@ def updateRecipe(request, title):
     formset = IngredientFormset(request.POST or None, queryset=qs)
     context = {'form': form, 'formset': formset, 'object': obj}
     
-    if request.method == 'POST':
-        if all([form.is_valid(), formset.is_valid()]):
-            parent = form.save(commit=False)
-            parent.save()
-            for form in formset:
-                child = form.save(commit=False)
-                child.recipe = parent
-                child.save()
 
-            context['message'] = 'Recipe Updated'
+    if all([form.is_valid(), formset.is_valid()]):
+        parent = form.save(commit=False)
+        parent.save()
+        for form in formset:
+            child = form.save(commit=False)
+            child.recipe = parent
+            child.save()
+
+        context['message'] = 'Recipe Updated'
 
     return render(request, "home/recipe_form.html", context)
 

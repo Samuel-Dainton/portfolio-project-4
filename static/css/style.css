@@ -94,3 +94,8 @@ a:hover {
 .hidden-form {
     display: none;
 }
+
+.ingredient-form {
+    border-bottom: 1px solid black;
+    padding-top: 5px;
+}
