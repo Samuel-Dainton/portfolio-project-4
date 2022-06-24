@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h1>Update Recipe</h1>
+            <form method="POST" action="" hx-post="" hx-swap="outerHTML">
+                {% csrf_token %}
+                {% if message %}
+                <h3>{{message}}</h3>
+                {% endif %}
+                {{form.as_p}}
+
+                {% if formset %}
+                <h3>Ingredients</h3>
+                {{ formset.management_form }}
+                <div id="ingredient-form-list">
+                {% for form in formset %}
+                    <div class="ingredient-form">
+                        {{ form.as_p }}
+                    </div>
+                {% endfor %}
+                </div>
+                <!-- Formset is placed but initial form is hidden until user clicks the add ingredient button, adding another form without the hidden class. -->
+                <div id="empty-form" class="hidden-form">{{ formset.empty_form }}</div>
+                <button id="add-ingredient" type="button">Add Ingredient</button>
+                {% endif %}
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+</div>
