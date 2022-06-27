@@ -52,7 +52,7 @@ def createRecipe(request):
             form.save()
             return redirect('home')
 
-    context = {'form': form, 'ingredient_form': IngredientForm()}
+    context = {'form': form}
     return render(request, 'home/recipe_form.html', context)
 
 @login_required()

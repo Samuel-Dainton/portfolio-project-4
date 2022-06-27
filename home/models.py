@@ -14,11 +14,17 @@ class Topic(models.Model):
     def __str__(self):
         return self.name
 
+class Allergy(models.Model):
+    name = models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.name
+
 class Recipe(models.Model):
     # relationships
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     topic = models.ManyToManyField(Topic,)
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=200, unique=True)
     # basics
 
     prep_time = models.CharField(null=True, blank=True, max_length=50)
@@ -29,7 +35,7 @@ class Recipe(models.Model):
     fat = models.CharField(blank=True, null=True, max_length=50)
     carbs = models.CharField(blank=True, null=True, max_length=50)
     protein = models.CharField(blank=True, null=True, max_length=50)
-    allergy_info = models.TextField(blank=True, null=True)
+    allergy_info = models.ManyToManyField(Allergy,)
     # housekeeping
     created = models.DateTimeField(auto_now_add=True)
     # thirdparty
