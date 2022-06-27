@@ -10,13 +10,6 @@
                 {{form.as_p}}
                 <input type="submit" value="Submit">
             </form>
-
-            <!-- TODO add button 'onclick' add form -->
-            <form action="" method="POST">
-                {% csrf_token %}
-                {{ ingredient_form.as_p }}
-                <input type="submit" class="btn" value="Add Ingredient">
-            </form>
         </div>
     </div>
 </div>

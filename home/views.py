@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
-from .models import Recipe, Ingredient, Comment
-from .forms import RecipeForm, IngredientForm
+from .models import Recipe, Comment
+from .forms import RecipeForm
 
 
 def topic(request):
@@ -20,9 +20,8 @@ def home(request):
     )
 
     recipe_count = recipes.count()
-    ingredient = Ingredient.objects.name
 
-    context = {'recipes': recipes, 'recipe_count': recipe_count, 'ingredient': ingredient,}
+    context = {'recipes': recipes, 'recipe_count': recipe_count,}
     return render(request, 'home/index.html', context)
 
 
@@ -55,22 +54,6 @@ def createRecipe(request):
 
     context = {'form': form, 'ingredient_form': IngredientForm()}
     return render(request, 'home/recipe_form.html', context)
-
-
-@login_required()
-def addIngredient(request):
-
-    ingredient_form = IngredientForm()
-
-    if request.method == 'POST':
-        ingredient_form = IngredientForm(request.POST)
-        if ingredient_form.is_valid():
-            ingredient_form.save()
-            return redirect('home')
-
-    context = {'ingredient_form': ingredient_form}
-    return render(request, 'home/recipe_form.html', context)
-
 
 @login_required()
 def updateRecipe(request, title):

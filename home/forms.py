@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Recipe, Ingredient, Comment, Topic
+from .models import Recipe, Comment, Topic
 
 class RecipeForm(forms.ModelForm):
     class Meta: 
@@ -13,15 +13,3 @@ class RecipeForm(forms.ModelForm):
         queryset=Topic.objects.all(),
         widget=forms.CheckboxSelectMultiple
     )
-
-class IngredientForm(ModelForm):
-    class Meta:
-        model = Ingredient
-        fields = '__all__'
-        exclude = ['recipe',]
-        recipe = Recipe.title
-
-# class CommentForm(ModelForm):
-#     class Meta:
-#         model = Comment
-#         fields = ('body',)

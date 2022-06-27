@@ -20,6 +20,7 @@ class Recipe(models.Model):
     topic = models.ManyToManyField(Topic,)
     title = models.CharField(max_length=200)
     # basics
+
     prep_time = models.CharField(null=True, blank=True, max_length=50)
     cook_time = models.CharField(null=True, blank=True, max_length=50)
     difficulty = models.CharField(max_length=50)
@@ -33,7 +34,8 @@ class Recipe(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     # thirdparty
     introduction = RichTextField(blank=True, null=True)
-    method = RichTextField(blank=True, null=True)
+    ingredient = RichTextField(blank=False, null=True)
+    method = RichTextField(blank=False, null=True)
     image = CloudinaryField('image', null=True, blank=True, default="recipe_image.png")    
     class Meta:
         ordering = ['-created']
@@ -41,19 +43,6 @@ class Recipe(models.Model):
     def __str__(self):
         return self.title
 
-class Ingredient(models.Model):
-    ingredient = models.CharField(max_length=50)
-    # TODO should it not be positive int field?
-    quantity = models.CharField(max_length=10)
-    unit = models.CharField(max_length=50, blank=True, null=True)
-    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
-    
-    # TODO reset database change ingredients to singular
-    class Meta:
-        verbose_name_plural = 'Ingredients'
-
-    def __str__(self):
-        return self.ingredient
 
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
