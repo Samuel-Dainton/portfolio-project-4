@@ -7,8 +7,8 @@ class RecipeForm(forms.ModelForm):
         model = Recipe
         # Can use ['name', 'method'...] to select specific values.
         fields = '__all__'
-        exclude = ['author',]
-        
+        exclude = ['author']
+
     topic = forms.ModelMultipleChoiceField(
         queryset=Topic.objects.all(),
         widget=forms.CheckboxSelectMultiple)

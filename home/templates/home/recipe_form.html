@@ -1,69 +1,138 @@
 {% extends 'base.html' %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-8">
-            <form method="POST" action="">
-                {% csrf_token %}
-                {{form.media}}
-                {{form.as_p}}
-                <input type="submit" value="Submit">
-            </form>
-        </div>
-    </div>
-</div>
+
+<!-- {{form|crispy}} -->
+
 
 <section class="intro">
-    <div class="bg-image-vertical h-100" style="background-color: #EFD3E4;
+  <div class="bg-image-vertical h-100" style="background-color: #EFD3E4;
             background-image: url(https://media.istockphoto.com/photos/varied-food-carbohydrates-protein-vegetables-fruits-dairy-legumes-on-picture-id1218254547?b=1&k=20&m=1218254547&s=170667a&w=0&h=mOEC7x7qU5NC78mCULs-jAPeLkxy8opOvIbGSnwmAyw=);
           ">
-      <div class="mask d-flex align-items-center h-100">
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-12 col-lg-10">
-              <div class="card" style="border-radius: 1rem;">
-                <div class="card-body p-5">
-  
-                  <h1 class="mb-5 text-center">Checkout Form</h1>
-  
-                  <form>
-                    <!-- 2 column grid layout with text inputs for the first and last names -->
-                    <div class="row">
-                      <div class="col-12 col-md-6 mb-4">
-                        <div class="form-outline">
-                            <label class="form-label" for="form6Example1">First name</label>
-                          {{form.title}}
-                          
-                        </div>
-                      </div>
-                      <div class="col-12 col-md-6 mb-4">
-                        <div class="form-outline">
-                          <input type="text" id="form6Example2" class="form-control" />
-                          <label class="form-label" for="form6Example2">Last name</label>
-                        </div>
-                      </div>
-                    </div>
-  
-                    <!-- Text input -->
-                    <div class="form-outline mb-4">
-                      <input type="text" id="form6Example3" class="form-control" />
-                      <label class="form-label" for="form6Example3">Company name</label>
-                    </div>
+    <div class="mask d-flex align-items-center h-100">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-lg-10">
+            <div class="card" style="border-radius: 1rem;">
+              <div class="card-body p-5">
 
-  
-                    <!-- Submit button -->
-                    <button type="submit" class="btn btn-secondary btn-rounded btn-block">Place order</button>
-                  </form>
-  
-                </div>
+                <h1 class="mb-5 text-center">Checkout Form</h1>
+
+                <form method="POST" action="">
+                  {{form.media}}
+                  {% csrf_token %}
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="form6Example3">Recipe Title*:</label>
+                    {{form.title}}
+                  </div>
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="form6Example3">Topic(s)*:</label>
+                    {% for topics in form.topic %}
+                    <div class="radio-button d-inline p-2">
+                      {{topics}}
+                    </div>
+                    {% endfor %}
+                  </div>
+
+                  <!-- 2 column grid layout with text inputs for the first and last names -->
+                  <div class="row">
+                    <div class="col-12 col-md-6 mb-4">
+                      <div class="form-outline">
+                        <label class="form-label" for="form6Example1">Difficulty*:</label>
+                        {{form.difficulty}}
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 mb-4">
+                      <div class="form-outline">
+                        <label class="form-label" for="form6Example2">Servings*:</label>
+                        {{form.servings}}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-12 col-md-6 mb-4">
+                      <div class="form-outline">
+                        <label class="form-label" for="form6Example1">Prep Time*:</label>
+                        {{form.prep_time}}
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-6 mb-4">
+                      <div class="form-outline">
+                        <label class="form-label" for="form6Example2">Cook Time*:</label>
+                        {{form.cook_time}}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-12 col-md-3 mb-4">
+                      <div class="form-outline">
+                        <label class="form-label" for="form6Example1">Calories:</label>
+                        {{form.calories}}
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-3 mb-4">
+                      <div class="form-outline">
+                        <label class="form-label" for="form6Example2">Carbs:</label>
+                        {{form.carbs}}
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-3 mb-4">
+                      <div class="form-outline">
+                        <label class="form-label" for="form6Example2">Fat:</label>
+                        {{form.fat}}
+                      </div>
+                    </div>
+                    <div class="col-12 col-md-3 mb-4">
+                      <div class="form-outline">
+                        <label class="form-label" for="form6Example2">Protein:</label>
+                        {{form.protein}}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="form6Example3">Allergy Warning(s):</label>
+                    {% for allergens in form.allergy_info %}
+                    <div class="radio-button d-inline p-2">
+                      {{allergens}}
+                    </div>
+                    {% endfor %}
+                  </div>
+
+
+                  <!-- Text input -->
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="form6Example3">Introduction:</label>
+                    {{form.introduction}}
+                  </div>
+                  <!-- Text input -->
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="form6Example3">Ingredients:</label>
+                    {{form.ingredient}}
+                  </div>
+                  <!-- Text input -->
+                  <div class="form-outline mb-4">
+                    <label class="form-label" for="form6Example3">Method:</label>
+                    {{form.method}}
+                  </div>
+
+
+                  <!-- Submit button -->
+                  <button type="submit" value="Submit" class="btn btn-secondary btn-rounded btn-block">Submit Recipe</button>
+                </form>
+
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
 {% endblock content %}

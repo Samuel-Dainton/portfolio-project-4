@@ -49,6 +49,7 @@ def createRecipe(request):
     if request.method == 'POST':
         form = RecipeForm(request.POST)
         if form.is_valid():
+            form.instance.author = request.user
             form.save()
             return redirect('home')
 
