@@ -88,6 +88,9 @@ a:hover {
     background-image: url("/static/images/food.jpg");
 }
 
+.cke {
+    width: 100% !important;
+}
 
 
 @media (max-width: 575px) {
