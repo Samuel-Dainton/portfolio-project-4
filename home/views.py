@@ -14,7 +14,8 @@ def home(request):
 
     recipes = Recipe.objects.filter(
         Q(topic__name__icontains=q) |
-        Q(title__icontains=q) 
+        Q(title__icontains=q)  |
+        Q(ingredient__icontains=q)
         # TODO search comes from recipe but ingredients is not in recipe. (Don't forget to add | for or)
         # Q(ingredient__icontains=q)
     )
