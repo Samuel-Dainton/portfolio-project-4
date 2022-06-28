@@ -21,15 +21,21 @@ class Allergy(models.Model):
         return self.name
 
 class Recipe(models.Model):
+
+    DIFFICULTY_CHOICES = (
+        ('easy','Easy'),
+        ('moderate', 'Moderate'),
+        ('advanced','Advanced'),
+    )
     # relationships
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     topic = models.ManyToManyField(Topic,)
     title = models.CharField(max_length=200, unique=True)
     # basics
 
-    prep_time = models.CharField(null=True, blank=True, max_length=50)
-    cook_time = models.CharField(null=True, blank=True, max_length=50)
-    difficulty = models.CharField(max_length=50)
+    prep_time = models.PositiveIntegerField(null=True, blank=False)
+    cook_time = models.PositiveIntegerField(null=True, blank=False)
+    difficulty = models.CharField(max_length=50, choices=DIFFICULTY_CHOICES, default='Easy')
     servings = models.CharField(max_length=50)
     calories = models.CharField(blank=True, null=True, max_length=50)
     fat = models.CharField(blank=True, null=True, max_length=50)

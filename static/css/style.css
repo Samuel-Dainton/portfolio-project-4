@@ -79,6 +79,11 @@ a:hover {
     border-radius: 5px; 
 }
 
+.recipe-form-container {
+    margin-top: 3rem;
+    margin-bottom: 3rem;    
+}
+
 .test {
     background-image: url("/static/images/food.jpg");
 }
