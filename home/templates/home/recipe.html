@@ -9,6 +9,44 @@
 
 <p>{{recipe.method|safe}}</p>
 
+<section>
+    <div class="mask d-flex align-items-center h-100">
+        <div class="container">
+            <div class="row justify-content-center recipe-form-container">
+                <div class="col-12">
+                    <div class="card" style="border-radius: 1rem;">
+                        <div class="card-body p-5">
+                            <div class="row">
+                                <div class="mb-4 col-sm">
+                                    {{recipe.image}}
+                                </div>
+
+                                <div class="mb-4 col-sm">
+                                    <div>
+                                        <h3>{{recipe.title}}</h3>
+                                    </div>
+                                    <div>
+                                        <div class="row">
+                                            <div class="mb-4 col-sm">
+                                                Prep Time: {{recipe.prep_time}}
+                                            </div>
+                                            <div class="mb-4 col-sm">
+                                                Cook Time: {{recipe.cook_time}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
 <div>
     <h3>Comments</h3>
     <hr>
