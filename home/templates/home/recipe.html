@@ -2,67 +2,124 @@
 
 {% block content %}
 
-<h1>Recipe
-</h1>
+{{recipe.allergy_info}}
+{{allergy.name}}
 
-<h1>{{recipe.title}}</h1>
-
-<p>{{recipe.method|safe}}</p>
+<!-- 
+<p>{{recipe.method|safe}}</p> -->
 
 <section>
-    <div class="mask d-flex align-items-center h-100">
-        <div class="container">
-            <div class="row justify-content-center recipe-form-container">
-                <div class="col-12">
-                    <div class="card" style="border-radius: 1rem;">
-                        <div class="card-body p-5">
+    <div class="container shadow py-4 mt-3 recipe-intro-container">
+        <div class="row align-items-md-stretch">
+
+            <div class="p-3">
+                <div class="row">
+                    <div class="mb-4 col-md">
+                        {% if "placeholder" in recipe.image.url %}
+                        <img src="https://codeinstitute.s3.amazonaws.com/fullstack/blog/default.jpg" width="100%">
+                        {% else %}
+                        <img src=" {{ recipe.image.url }}" width="100%">
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-4 col-md">
+
+                        <div>
+                            <h3>{{recipe.title}}</h3>
+                        </div>
+
+                        <div>
+                            <h5 class="text-muted">By {{recipe.author}}</h5>
+                        </div>
+
+                        <div>
                             <div class="row">
-                                <div class="mb-4 col-sm">
-                                    {{recipe.image}}
+                                <div class="col-sm">
+                                    <i class="fa-solid fa-clock"></i> Prep Time: {{recipe.prep_time}}
+                                    <br>
+                                    <i class="fa-regular fa-clock"></i></i> Cook Time: {{recipe.cook_time}}
                                 </div>
-
-                                <div class="mb-4 col-sm">
-                                    <div>
-                                        <h3>{{recipe.title}}</h3>
-                                    </div>
-                                    <div>
-                                        <div class="row">
-                                            <div class="mb-4 col-sm">
-                                                Prep Time: {{recipe.prep_time}}
-                                            </div>
-                                            <div class="mb-4 col-sm">
-                                                Cook Time: {{recipe.cook_time}}
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="col-sm">
+                                    <i class="fa-solid fa-utensils"></i> Serves: {{recipe.servings}}
                                 </div>
-
+                                <div class="col-sm">
+                                    <i class="fa-solid fa-list-check"></i> Difficulty: {{recipe.difficulty}}
+                                </div>
                             </div>
                         </div>
+
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Calories</th>
+                                    <th scope="col">Fat</th>
+                                    <th scope="col">Carbs</th>
+                                    <th scope="col">Protein</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>{{recipe.calories}}</th>
+                                    <td>{{recipe.fat}}</td>
+                                    <td>{{recipe.carbs}}</td>
+                                    <td>{{recipe.protein}}</td>
+                                </tr>
+                        </table>
+
+                        <div class="row">
+                            {% for allergy in allergy_info.name %}
+                            <div class="col-sm">{{allergy}}</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="mb-4 col-md border">
+                        {{recipe.introduction|safe}}
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
+    </div>
+    </div>
 </section>
 
-<div>
-    <h3>Comments</h3>
-    <hr>
-
-    {% for comment in comments %}
-
-    <div>
-        <p>{{comment.user}} - {{comment.created|timesince}} ago.</p>
-
-        <p>{{comment.body}}</p>
-        {% if request.user == comment.user %}
-        <a href="{% url 'delete-comment' comment.id %}">Delete Comment</a>
-        {% endif %}
+<section>
+    <div class="container shadow py-4 mt-3">
+        <div class="row align-items-md-stretch">
+            <div class="col-md-6">
+                <div class="h-100 p-5 rounded-3">
+                    <h2>Method</h2>
+                    {{recipe.method|safe}}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="h-100 p-5 rounded-3">
+                    <h2>Ingredients</h2>
+                    {{recipe.ingredients|safe}}
+                </div>
+            </div>
+        </div>
     </div>
+</section>
 
-    {% endfor %}
+<h3>Comments</h3>
+<hr>
+
+{% for comment in comments %}
+
+<div>
+    <p>{{comment.user}} - {{comment.created|timesince}} ago.</p>
+
+    <p>{{comment.body}}</p>
+    {% if request.user == comment.user %}
+    <a href="{% url 'delete-comment' comment.id %}">Delete Comment</a>
+    {% endif %}
+</div>
+
+{% endfor %}
 </div>
 
 {% if request.user.is_authenticated %}

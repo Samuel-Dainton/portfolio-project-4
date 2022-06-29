@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
 from cloudinary.models import CloudinaryField
 
+
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     avatar = CloudinaryField('image', null=True, default="recipe_image.png")
@@ -23,16 +24,17 @@ class Allergy(models.Model):
 class Recipe(models.Model):
 
     DIFFICULTY_CHOICES = (
-        ('easy','Easy'),
-        ('moderate', 'Moderate'),
-        ('advanced','Advanced'),
+        ('Easy','Easy'),
+        ('Moderate', 'Moderate'),
+        ('Advanced','Advanced'),
     )
     # relationships
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     topic = models.ManyToManyField(Topic,)
-    title = models.CharField(max_length=200, unique=True)
-    # basics
+    allergy_info = models.ManyToManyField(Allergy,)
 
+    # basics
+    title = models.CharField(max_length=200, unique=True)
     prep_time = models.PositiveIntegerField(null=True, blank=False)
     cook_time = models.PositiveIntegerField(null=True, blank=False)
     difficulty = models.CharField(max_length=50, choices=DIFFICULTY_CHOICES, default='Easy')
@@ -41,14 +43,14 @@ class Recipe(models.Model):
     fat = models.CharField(blank=True, null=True, max_length=50)
     carbs = models.CharField(blank=True, null=True, max_length=50)
     protein = models.CharField(blank=True, null=True, max_length=50)
-    allergy_info = models.ManyToManyField(Allergy,)
+
     # housekeeping
     created = models.DateTimeField(auto_now_add=True)
     # thirdparty
     introduction = RichTextField(blank=True, null=True)
     ingredient = RichTextField(blank=False, null=True)
     method = RichTextField(blank=False, null=True)
-    image = CloudinaryField('image', null=True, blank=True, default="recipe_image.png")    
+    image = CloudinaryField('image', null=True, blank=True, default='placeholder')    
     class Meta:
         ordering = ['-created']
 

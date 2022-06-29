@@ -79,19 +79,24 @@ a:hover {
     border-radius: 5px; 
 }
 
-.recipe-form-container {
-    margin-top: 3rem;
-    margin-bottom: 3rem;    
+/* Recipe Detail Page */
+
+.recipe-intro-container {
+    background-color: rgba(49, 175, 180, 0.4);
 }
 
-.test {
-    background-image: url("/static/images/food.jpg");
-}
+/* Create Recipe Page */
 
 .cke {
     width: 100% !important;
 }
 
+.recipe-form-container {
+    margin-top: 3rem;
+    margin-bottom: 3rem;    
+}
+
+/* Media Queries */
 
 @media (max-width: 575px) {
     .carousel-container {
