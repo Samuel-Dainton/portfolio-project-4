@@ -1,15 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-{{recipe.allergy_info}}
-{{allergy.name}}
-
 <!-- 
 <p>{{recipe.method|safe}}</p> -->
-
 <section>
     <div class="container shadow py-4 mt-3 recipe-intro-container">
+        {% if request.user == recipe.author %}
+        <button type="button" class="btn btn-sm btn-outline-secondary"><a
+                href="{% url 'update-recipe' recipe.title %}">Edit</a></button>
+        <button type="button" class="btn btn-sm btn-outline-secondary"><a
+                href="{% url 'delete-recipe' recipe.title %}">Delete</a></button>
+        {% endif %}
         <div class="row align-items-md-stretch">
 
             <div class="p-3">
@@ -59,26 +60,45 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th>{{recipe.calories}}</th>
+                                    {% if recipe.calories is not None %}
+                                    <td>{{recipe.calories}}</td>
+                                    {% else %}
+                                    <td>Unspecified</td>
+                                    {% endif %}
+                                    {% if recipe.fat is not None %}
                                     <td>{{recipe.fat}}</td>
+                                    {% else %}
+                                    <td>Unspecified</td>
+                                    {% endif %}
+                                    {% if recipe.carbs is not None %}
                                     <td>{{recipe.carbs}}</td>
+                                    {% else %}
+                                    <td>Unspecified</td>
+                                    {% endif %}
+                                    {% if recipe.protein is not None %}
                                     <td>{{recipe.protein}}</td>
+                                    {% else %}
+                                    <td>Unspecified</td>
+                                    {% endif %}
                                 </tr>
                         </table>
-
-                        <div class="row">
-                            {% for allergy in allergy_info.name %}
-                            <div class="col-sm">{{allergy}}</div>
-                            {% endfor %}
-                        </div>
                     </div>
 
                 </div>
+
                 <div class="row">
-                    <div class="mb-4 col-md border">
+                    <medium>Allergy Warnings {% for allergy in recipe.allergy_info.all %}
+                        | {{allergy}}
+                        {% endfor %}</medium>
+                </div>
+
+                {% if recipe.introduction is not None %}
+                <div class="row mt-3 d-flex justify-content-center">
+                    <div class="col-11 border">
                         {{recipe.introduction|safe}}
                     </div>
                 </div>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -87,8 +107,8 @@
 </section>
 
 <section>
-    <div class="container shadow py-4 mt-3">
-        <div class="row align-items-md-stretch">
+    <div class="bg-light container shadow py-4 mt-3">
+        <div class="row align-items-center">
             <div class="col-md-6">
                 <div class="h-100 p-5 rounded-3">
                     <h2>Method</h2>
@@ -98,37 +118,76 @@
             <div class="col-md-6">
                 <div class="h-100 p-5 rounded-3">
                     <h2>Ingredients</h2>
-                    {{recipe.ingredients|safe}}
+                    {{recipe.ingredient|safe}}
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<h3>Comments</h3>
-<hr>
+<div class="container mt-5">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-12">
+            <div class="headings d-flex justify-content-between align-items-center mb-3">
+                <h5><u>Comments</u></h5>
+            </div>
+            {% if request.user.is_authenticated %}
+            <p>
+                <button class="btn btn-primary topic-button" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    + Leave A Comment
+                </button>
+            </p>
+            <div class="collapse" id="collapseExample">
+                <div class="card card-body">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+                        <input type="text" name="body"
+                            placeholder="Write your comment here and press 'enter' to submit." class="comment-input">
+                    </form>
+                </div>
+            </div>
+            {% else %}
+            <p>You'll need to
+                <a class="dropdown-item" href="{% url 'account_login' %}">Login</a>/
+                <a class="dropdown-item" href="{% url 'account_signup' %}">Signup</a>
+                to leave your own comments.</p>
+            {% endif %}
+            {% for comment in comments %}
+            <div class="card comment-card p-3">
 
-{% for comment in comments %}
+                <div class="d-flex justify-content-between align-items-center">
 
-<div>
-    <p>{{comment.user}} - {{comment.created|timesince}} ago.</p>
+                    <div class="d-flex flex-row align-items-center">
 
-    <p>{{comment.body}}</p>
-    {% if request.user == comment.user %}
-    <a href="{% url 'delete-comment' comment.id %}">Delete Comment</a>
-    {% endif %}
-</div>
+                        <img src="https://i.imgur.com/hczKIze.jpg" width="30"
+                            class="comment-profile user-img rounded-circle mr-2">
 
-{% endfor %}
-</div>
+                        <span>
+                            <medium class="font-weight-bold text-primary"> {{comment.user}}: </medium>
+                            <medium class="font-weight-bold">{{comment.body}}</medium>
+                        </span>
 
-{% if request.user.is_authenticated %}
-<div>
-    <form action="" method="POST">
-        {% csrf_token %}
-        <input type="text" name="body" placeholder="Write a comment here!">
-    </form>
-</div>
-{% endif %}
+                    </div>
+                    <small class="comment-date">{{comment.created|timesince}} ago.</small>
+                </div>
 
-{% endblock content %}
+                <div class="action d-flex justify-content-between mt-2 align-items-center">
+
+                    <div class="reply px-4">
+                        {% if request.user == comment.user %}
+                        <a href="{% url 'delete-comment' comment.id %}"
+                            class="btn btn-primary topic-button btn-sm">Delete Comment</a>
+                        {% endif %}
+                    </div>
+
+                    <div class="icons align-items-center">
+                        <i class="fa fa-star text-warning"></i>
+                        <i class="fa fa-check-circle-o check-icon"></i>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endblock content %}

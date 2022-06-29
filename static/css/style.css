@@ -85,6 +85,22 @@ a:hover {
     background-color: rgba(49, 175, 180, 0.4);
 }
 
+.comment-input {
+    width: 100%;
+}
+
+.comment-card {
+    margin-top: 1rem;
+}
+
+.comment-profile{
+    margin-right: 0.5rem;
+}
+
+.comment-date {
+    margin-left: 1rem;
+}
+
 /* Create Recipe Page */
 
 .cke {
@@ -103,3 +119,4 @@ a:hover {
         margin-top: 0px;
     }
 }
+

@@ -16,8 +16,6 @@ def home(request):
         Q(topic__name__icontains=q) |
         Q(title__icontains=q)  |
         Q(ingredient__icontains=q)
-        # TODO search comes from recipe but ingredients is not in recipe. (Don't forget to add | for or)
-        # Q(ingredient__icontains=q)
     )
 
     recipe_count = recipes.count()
@@ -29,7 +27,7 @@ def home(request):
 def recipe(request, title):
     recipe = Recipe.objects.get(title=title)
     comments = recipe.comment_set.all().order_by('-created')
-
+    
     if request.method == 'POST':
         comment = Comment.objects.create(
             user = request.user,
