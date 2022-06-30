@@ -5,6 +5,8 @@ from django.contrib.auth.decorators import login_required
 from .models import Recipe, Comment, Allergy
 from .forms import RecipeForm
 
+from django.core.paginator import Paginator
+from django.shortcuts import render
 
 def topic(request):
     return render(request, 'home/browse.html')
@@ -20,7 +22,13 @@ def home(request):
 
     recipe_count = recipes.count()
 
-    context = {'recipes': recipes, 'recipe_count': recipe_count,}
+    recipe_list = Recipe.objects.all()
+    paginator = Paginator(recipe_list, 12) # Show 12 recipes per page.
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {'recipes': recipes, 'recipe_count': recipe_count, 'page_obj': page_obj}
     return render(request, 'home/index.html', context)
 
 
