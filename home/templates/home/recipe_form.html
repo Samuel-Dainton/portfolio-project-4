@@ -9,8 +9,7 @@
 
 
 <section>
-  <div class="bg-image-vertical h-100" style="background-color: #EFD3E4;
-            background-image: url(/static/images/recipe.png);
+  <div class="bg-image-vertical h-100" style="background-image: url(/static/images/recipe.png);
           ">
     <div class="mask d-flex align-items-center h-100">
       <div class="container">
@@ -20,7 +19,9 @@
               <div class="card-body p-5">
 
                 <h1 class="mb-5 text-center">Create Your Recipe</h1>
-
+                {% if form.errors %}
+                <h2 class="text-center error-message">Please make sure you've filled in all fields marked with an *.</h2>
+                {% endif %}
                 <form method="POST" action="">
                   {{form.media}}
                   {% csrf_token %}
@@ -38,7 +39,7 @@
                       {% endfor %}
                     </div>
                   </div>
-                  
+
                   <div class="form-outline mb-4">
                     <label class="form-label" for="form6Example3">Recipe Image:</label>
                     {{form.image}}
@@ -121,12 +122,12 @@
                   </div>
                   <!-- Text input -->
                   <div class="form-outline mb-4">
-                    <label class="form-label" for="form6Example3">Ingredients:</label>
+                    <label class="form-label" for="form6Example3">Ingredients*:</label>
                     <div>{{form.ingredient}}</div>
                   </div>
                   <!-- Text input -->
                   <div class="form-outline mb-4">
-                    <label class="form-label" for="form6Example3">Method:</label>
+                    <label class="form-label" for="form6Example3">Method*:</label>
                     <div>{{form.method}}</div>
                   </div>
 

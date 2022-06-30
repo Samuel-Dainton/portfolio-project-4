@@ -112,6 +112,10 @@ a:hover {
     margin-bottom: 3rem;    
 }
 
+.error-message {
+    background-color: yellow;
+}
+
 /* Media Queries */
 
 @media (max-width: 575px) {

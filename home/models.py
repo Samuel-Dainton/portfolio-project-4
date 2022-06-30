@@ -51,6 +51,7 @@ class Recipe(models.Model):
     ingredient = RichTextField(blank=False, null=True)
     method = RichTextField(blank=False, null=True)
     image = CloudinaryField('image', null=True, blank=True, default='placeholder')    
+    
     class Meta:
         ordering = ['-created']
 
