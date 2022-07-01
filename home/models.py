@@ -9,17 +9,20 @@ class UserProfile(models.Model):
     avatar = CloudinaryField('image', null=True, default="recipe_image.png")
     bio = models.TextField(null=True)
 
+
 class Topic(models.Model):
     name = models.CharField(max_length=200)
 
     def __str__(self):
         return self.name
 
+
 class Allergy(models.Model):
     name = models.CharField(max_length=200)
 
     def __str__(self):
         return self.name
+
 
 class Recipe(models.Model):
 

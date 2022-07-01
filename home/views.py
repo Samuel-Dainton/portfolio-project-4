@@ -35,7 +35,7 @@ def home(request):
 def recipe(request, title):
     recipe = Recipe.objects.get(title=title)
     comments = recipe.comment_set.all().order_by('-created')
-    
+
     if request.method == 'POST':
         comment = Comment.objects.create(
             user = request.user,
@@ -54,7 +54,8 @@ def createRecipe(request):
     form = RecipeForm()
     
     if request.method == 'POST':
-        form = RecipeForm(request.POST)
+        form = RecipeForm(request.POST, request.FILES)
+        context['posted'] = form.instance
         if form.is_valid():
             form.instance.author = request.user
             form.save()
@@ -73,7 +74,7 @@ def updateRecipe(request, title):
         return HttpResponse('This is not your recipe to edit.')
 
     if request.method == 'POST':
-        form = RecipeForm(request.POST, instance=recipe)
+        form = RecipeForm(request.POST, request.FILES, instance=recipe)
         if form.is_valid():
             form.save()
             return redirect('home')
