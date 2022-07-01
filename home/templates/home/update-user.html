@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load cloudinary %}
+{% block content %}
+
+          <h3>Edit your profile</h3>
+
+        <form class="form" action="" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+
+          {% for field in form %}
+
+            <label for="profile_pic">{{field.label}}</label>
+            {{field}}
+
+          {% endfor %}
+
+
+
+            <a class="btn btn--dark" href="{% url 'user-profile' request.user.id%}">Cancel</a>
+            <button class="btn btn--main" type="submit">Update</button>
+
+        </form>
+
+</main>
+{% endblock content %}

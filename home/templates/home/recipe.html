@@ -30,7 +30,7 @@
                         </div>
 
                         <div>
-                            <h5 class="text-muted">By {{recipe.author}}</h5>
+                            <h5 class="text-muted">By <a href="{% url 'user-profile' recipe.author.id %}">{{recipe.author}}</a></h5>
                         </div>
 
                         <div>

@@ -2,8 +2,9 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
-from .models import Recipe, Comment, Allergy
-from .forms import RecipeForm
+from .models import Recipe, Comment, Allergy, UserProfile
+from .forms import RecipeForm, UserForm
+from django.contrib.auth.models import User
 
 from django.core.paginator import Paginator
 from django.shortcuts import render
@@ -30,6 +31,18 @@ def home(request):
 
     context = {'recipes': recipes, 'recipe_count': recipe_count, 'page_obj': page_obj}
     return render(request, 'home/index.html', context)
+
+
+def userProfile(request, pk):
+    user = User.objects.get(id=pk)
+    recipes = user.recipe_set.all()
+
+    paginator = Paginator(recipes, 12) # Show 12 recipes per page.
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {'user': user, 'recipes': recipes, 'page_obj': page_obj}
+    return render(request, 'home/profile.html', context)
 
 
 def recipe(request, title):
@@ -107,3 +120,15 @@ def deleteComment(request, pk):
         return redirect('home')
     return render(request, 'home/delete.html', {'selected_object': comment})
 
+@login_required(login_url='login')
+def updateUser(request):
+    user = request.user
+    form = UserForm(instance=user)
+
+    if request.method == 'POST':
+        form = UserForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('user-profile', pk=user.id)
+
+    return render(request, 'home/update-user.html', {'form': form})
