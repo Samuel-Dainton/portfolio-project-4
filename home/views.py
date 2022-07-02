@@ -13,23 +13,33 @@ def topic(request):
     return render(request, 'home/browse.html')
 
 def home(request):
+    
     q = request.GET.get('q') if request.GET.get('q') != None else ''
 
-    recipes = Recipe.objects.filter(
-        Q(topic__name__icontains=q) |
-        Q(title__icontains=q)  |
-        Q(ingredient__icontains=q)
+
+    if q:
+        recipe_list = Recipe.objects.filter(
+            Q(topic__name__icontains=q) |
+            Q(title__icontains=q)  |
+            Q(ingredient__icontains=q)
     )
+    else:
+        recipe_list = Recipe.objects.all()
 
-    recipe_count = recipes.count()
 
-    recipe_list = Recipe.objects.all()
-    paginator = Paginator(recipe_list, 12) # Show 12 recipes per page.
+    mylist = recipe_list
+    mylist = list(dict.fromkeys(mylist))
+    print(mylist)
+
+    recipe_counter = Recipe.objects.all()
+    recipe_count = recipe_counter.count()
+
+    paginator = Paginator(mylist, 12) # Show 12 recipes per page.
 
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    context = {'recipes': recipes, 'recipe_count': recipe_count, 'page_obj': page_obj}
+    context = {'mylist': mylist, 'recipe_count': recipe_count, 'page_obj': page_obj}
     return render(request, 'home/index.html', context)
 
 
