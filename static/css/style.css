@@ -60,6 +60,12 @@ a:hover {
     border-radius: 5px; 
 }
 
+.recipe-thumbnail {
+    height: 15rem;
+    object-fit: fill;
+}
+
+
 /* Recipe Detail Page */
 
 .recipe-intro-container {

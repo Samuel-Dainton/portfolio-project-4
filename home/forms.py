@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm
-from .models import Recipe, Comment, Topic, Allergy, UserProfile
+from .models import Recipe, Topic, Allergy, UserProfile
 from django.contrib.auth.models import User
 
 class RecipeForm(forms.ModelForm):
