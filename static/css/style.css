@@ -65,6 +65,10 @@ a:hover {
     object-fit: fill;
 }
 
+.recipe-info-card {
+    min-height: 6.438rem;
+}
+
 
 /* Recipe Detail Page */
 

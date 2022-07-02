@@ -8,9 +8,9 @@
             <a class="topic-button" href="{% url 'home' %}">All</a>
 
             {% for topic in topics %}
-
-            <a class="topic-button" href="{% url 'home' %}?q={{topic.name}}">{{topic.name}}</a>
-
+            <div class="d-inline-flex m-1">
+                <a class="topic-button" href="{% url 'home' %}?q={{topic.name}}">{{topic.name}}</a>
+            </div>
             {% endfor %}
         </div>
     </div>

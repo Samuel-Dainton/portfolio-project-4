@@ -55,6 +55,13 @@ class Recipe(models.Model):
     method = RichTextField(blank=False, null=True)
     image = CloudinaryField('image', null=True, blank=True, default='placeholder')    
     
+    @property
+    def time(self):
+        hours = (self.prep_time + self.cook_time) // 60
+        minutes = (self.prep_time + self.cook_time) % 60
+        time = "{}h {}min".format(hours, minutes)
+        return time
+
     class Meta:
         ordering = ['-created']
 
