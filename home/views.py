@@ -68,7 +68,6 @@ def createRecipe(request):
     
     if request.method == 'POST':
         form = RecipeForm(request.POST, request.FILES)
-        context['posted'] = form.instance
         if form.is_valid():
             form.instance.author = request.user
             form.save()

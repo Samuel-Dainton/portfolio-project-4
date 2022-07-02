@@ -7,6 +7,7 @@ from cloudinary.models import CloudinaryField
 class UserProfile(models.Model):
     avatar = CloudinaryField('image', null=True, default="recipe_image.png")
     bio = models.TextField(blank=True, null=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
 
 class Topic(models.Model):
