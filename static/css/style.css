@@ -61,7 +61,7 @@ a:hover {
 }
 
 .recipe-thumbnail {
-    height: 15rem;
+    min-height: 15rem;
     object-fit: fill;
 }
 

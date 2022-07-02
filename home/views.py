@@ -27,9 +27,7 @@ def home(request):
         recipe_list = Recipe.objects.all()
 
 
-    mylist = recipe_list
-    mylist = list(dict.fromkeys(mylist))
-    print(mylist)
+    mylist = recipe_list.distinct()
 
     recipe_counter = Recipe.objects.all()
     recipe_count = recipe_counter.count()
@@ -139,5 +137,5 @@ def updateUser(request):
         if form.is_valid():
             form.save()
             return redirect('user-profile', pk=user.id)
-
-    return render(request, 'home/update-user.html', {'form': form})
+    context = {'form': form}
+    return render(request, 'home/update-user.html', context)

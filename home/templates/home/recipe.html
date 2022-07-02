@@ -17,7 +17,8 @@
                 <div class="row">
                     <div class="mb-4 col-md">
                         {% if "placeholder" in recipe.image.url %}
-                        <img src="https://res.cloudinary.com/samuel-dainton/image/upload/v1656760672/gikczyzwxu8x8rtf9g3h.jpg" width="100%">
+                        <img src="https://res.cloudinary.com/samuel-dainton/image/upload/v1656760672/gikczyzwxu8x8rtf9g3h.jpg"
+                            width="100%">
                         {% else %}
                         <img src=" {{ recipe.image.url }}" width="100%">
                         {% endif %}
@@ -30,15 +31,16 @@
                         </div>
 
                         <div>
-                            <h5 class="text-muted">By <a href="{% url 'user-profile' recipe.author.id %}">{{recipe.author}}</a></h5>
+                            <h5 class="text-muted">By <a
+                                    href="{% url 'user-profile' recipe.author.id %}">{{recipe.author}}</a></h5>
                         </div>
 
                         <div>
                             <div class="row">
                                 <div class="col-sm">
-                                    <i class="fa-solid fa-clock"></i> Prep Time: {{recipe.prep_time}}
+                                    <i class="fa-solid fa-clock"></i> Prep Time:<br> {{recipe.hours_prep_time}}
                                     <br>
-                                    <i class="fa-regular fa-clock"></i></i> Cook Time: {{recipe.cook_time}}
+                                    <i class="fa-regular fa-clock"></i></i> Cook Time:<br> {{recipe.hours_cook_time}}
                                 </div>
                                 <div class="col-sm">
                                     <i class="fa-solid fa-utensils"></i> Serves: {{recipe.servings}}
@@ -66,17 +68,17 @@
                                     <td>Unspecified</td>
                                     {% endif %}
                                     {% if recipe.fat is not None %}
-                                    <td>{{recipe.fat}}</td>
+                                    <td>{{recipe.fat}}g</td>
                                     {% else %}
                                     <td>Unspecified</td>
                                     {% endif %}
                                     {% if recipe.carbs is not None %}
-                                    <td>{{recipe.carbs}}</td>
+                                    <td>{{recipe.carbs}}g</td>
                                     {% else %}
                                     <td>Unspecified</td>
                                     {% endif %}
                                     {% if recipe.protein is not None %}
-                                    <td>{{recipe.protein}}</td>
+                                    <td>{{recipe.protein}}g</td>
                                     {% else %}
                                     <td>Unspecified</td>
                                     {% endif %}
@@ -109,18 +111,19 @@
 <section>
     <div class="bg-light container shadow py-4 mt-3">
         <div class="row align-items-center">
-            <div class="col-md-6">
-                <div class="h-100 p-5 rounded-3">
-                    <h2>Method</h2>
-                    {{recipe.method|safe}}
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="h-100 p-5 rounded-3">
+            <div class="col-lg-6">
+                <div class="h-100 p-1 rounded-3">
                     <h2>Ingredients</h2>
                     {{recipe.ingredient|safe}}
                 </div>
             </div>
+            <div class="col-lg-6">
+                <div class="h-100 p-1 rounded-3">
+                    <h2>Method</h2>
+                    {{recipe.method|safe}}
+                </div>
+            </div>
+
         </div>
     </div>
 </section>

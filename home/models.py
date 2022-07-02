@@ -61,6 +61,20 @@ class Recipe(models.Model):
         minutes = (self.prep_time + self.cook_time) % 60
         time = "{}h {}min".format(hours, minutes)
         return time
+    
+    @property
+    def hours_prep_time(self):
+        hours = self.prep_time // 60
+        minutes = self.prep_time % 60
+        hours_prep_time = "{}h {}min".format(hours, minutes)
+        return hours_prep_time
+    
+    @property
+    def hours_cook_time(self):
+        hours = self.cook_time // 60
+        minutes = self.cook_time % 60
+        hours_cook_time = "{}h {}min".format(hours, minutes)
+        return hours_cook_time
 
     class Meta:
         ordering = ['-created']
