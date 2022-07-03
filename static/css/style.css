@@ -12,6 +12,10 @@ a:hover {
     background-color: rgba(49, 175, 180, 0.4);
   }
 
+.btn {
+    border: 1px solid rgba(49, 175, 180, 0.4);
+}
+
 button:hover {
         background-color: rgba(49, 175, 180, 0.4);
 }
@@ -134,7 +138,7 @@ body{
     cursor:pointer;
 }
 
-.profile-card:before{
+.recipe-card:before{
     
     content:"";
     position:absolute;
@@ -148,7 +152,7 @@ body{
     transform-origin: bottom
 }
 
-.profile-card:after{
+.recipe-card:after{
     
     content:"";
     position:absolute;
@@ -162,7 +166,7 @@ body{
     transform-origin: bottom
 }
 
-.profile-card:hover::after{
+.recipe-card:hover::after{
     transform:scaleY(1);
 }
 

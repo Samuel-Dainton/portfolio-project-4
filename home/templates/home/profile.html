@@ -1,8 +1,5 @@
 {% extends 'base.html' %}
-
 {% load crispy_forms_tags %}
-
-
 {% block content %}
 
 <div class="mt-5 mb-5">
@@ -47,5 +44,4 @@
 {% if page_obj %}
 {% include 'home/recipe-grid.html' %}
 {%endif%}
-
 {% endblock content %}
