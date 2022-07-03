@@ -10,7 +10,7 @@ from django.dispatch import receiver
 
 
 class UserProfile(models.Model):
-    avatar = CloudinaryField('image', null=True, default="v1656845904/chef_dvaqcl.png")
+    avatar = CloudinaryField('image', blank=True, null=True, default="v1656845904/chef_dvaqcl.png")
     bio = models.TextField(blank=True, null=True, default="bioplacehodler")
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
