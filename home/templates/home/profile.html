@@ -5,13 +5,40 @@
 
 {% block content %}
 
-<h1>{{user.username}}</h1>
-{% if request.user == user %}
-<a class="dropdown-item" href="{% url 'update-user' %}">Update Profile</a>
-{%endif%}
+<div class="container mt-5 mb-5">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-7">
+            <div class="profile-card p-3 py-4">
+                <div class="text-center">
+                    {% if "avatarplaceholder" in recipe.image.url %}
+                    <img src="https://res.cloudinary.com/samuel-dainton/image/upload/v1656845904/chef_dvaqcl.png"
+                        width="100" class="rounded-circle">
+                    {% else %}
+                    <img src="{{user.userprofile.avatar.url}}" width="100" class="rounded-circle">
+                    {%endif%}
+                </div>
 
+                <div class="text-center mt-3">
+                    <h5 class="mt-2 mb-0">{{user.username}}</h5>
 
-{{user.userprofile.bio}}
+                    <div class="px-4 mt-1">
+                        {% if "bioplaceholder" in user.userprofile.bio %}
+                        <p class="fonts">{{user.username}} hasn't written anything here yet.</p>
+                        {% else %}
+                        <p class="fonts">{{user.userprofile.bio}}</p>
+                        {%endif%}
+                    </div>
+                    <div class="text-center mt-3">
+                        {% if request.user == user %}
+                        <a class="dropdown-item" href="{% url 'update-user' %}">Update Profile</a>
+                        {%endif%} 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <div class="album py-5 bg-light">
     <div class="container">
@@ -21,7 +48,9 @@
             <div class="col">
                 <div class="card shadow-sm">
                     {% if "placeholder" in recipe.image.url %}
-                    <img class="recipe-thumbnail" src="https://res.cloudinary.com/samuel-dainton/image/upload/v1656760672/gikczyzwxu8x8rtf9g3h.jpg" width="100%">
+                    <img class="recipe-thumbnail"
+                        src="https://res.cloudinary.com/samuel-dainton/image/upload/v1656760672/gikczyzwxu8x8rtf9g3h.jpg"
+                        width="100%">
                     {% else %}
                     <img class="recipe-thumbnail" src=" {{ recipe.image.url }}" width="100%">
                     {% endif %}
