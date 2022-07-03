@@ -3,6 +3,11 @@ from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
 from cloudinary.models import CloudinaryField
 
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
+
+
 
 class UserProfile(models.Model):
     avatar = CloudinaryField('image', null=True, default="recipe_image.png")
@@ -96,3 +101,13 @@ class Comment(models.Model):
     def __str__(self):
         return self.body[0:50]
 
+
+@receiver(post_save, sender=User)
+def create_or_update_user_profile(sender, instance, created, **kwargs):
+    """
+    Create or update the user profile
+    """
+    if created:
+        UserProfile.objects.create(user=instance)
+    # Existing users: just save the profile
+    instance.userprofile.save()
