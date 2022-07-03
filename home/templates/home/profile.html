@@ -20,22 +20,22 @@
 
                 <div class="text-center mt-3">
                     <h5 class="mt-2 mb-0">{{user.username}}</h5>
-
-                    <div class="px-4 mt-1">
-                        {% if 'bioplaceholder' %}
-                        <p class="fonts">{{user.username}} hasn't written anything here yet.</p>
-                        {% else %}
-                        <p class="fonts">{{user.userprofile.bio}}</p>
-                        {%endif%}
-                    </div>
                     <div class="text-center mt-3">
                         {% if request.user == user %}
                         <a class="dropdown-item" href="{% url 'update-user' %}">Update Profile</a>
                         {%endif%} 
                     </div>
+                    <div class="px-4 mt-1">
+                        {% if user.userprofile.bio == blank %}
+                        <p class="fonts">{{user.username}} hasn't written anything here yet.</p>
+                        {% else %}
+                        <p class="fonts">{{user.userprofile.bio}}</p>
+                        {%endif%}
+                    </div>
+
                     <div class="text-center mt-3">
                         {% if page_obj %}
-                        <p class="fonts">Below you'll find all of {{user.username}}'s recipes.</p>
+                        <p class="fonts">Below you'll find all of {{user.username}}'s submitted recipes.</p>
                         {%endif%} 
                     </div>
                 </div>

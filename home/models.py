@@ -11,7 +11,7 @@ from django.dispatch import receiver
 
 class UserProfile(models.Model):
     avatar = CloudinaryField('image', blank=True, null=True, default="v1656845904/chef_dvaqcl.png")
-    bio = models.TextField(blank=True, null=True, default="bioplacehodler")
+    bio = models.TextField(blank=True, null=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
 
