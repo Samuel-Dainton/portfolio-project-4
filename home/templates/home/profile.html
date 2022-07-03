@@ -22,7 +22,7 @@
                     <h5 class="mt-2 mb-0">{{user.username}}</h5>
 
                     <div class="px-4 mt-1">
-                        {% if "bioplaceholder" in user.userprofile.bio %}
+                        {% if 'bioplaceholder' %}
                         <p class="fonts">{{user.username}} hasn't written anything here yet.</p>
                         {% else %}
                         <p class="fonts">{{user.userprofile.bio}}</p>
@@ -33,71 +33,19 @@
                         <a class="dropdown-item" href="{% url 'update-user' %}">Update Profile</a>
                         {%endif%} 
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<div class="album py-5 bg-light">
-    <div class="container">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            {% for recipe in recipes %}
-            <div class="col">
-                <div class="card shadow-sm">
-                    {% if "placeholder" in recipe.image.url %}
-                    <img class="recipe-thumbnail"
-                        src="https://res.cloudinary.com/samuel-dainton/image/upload/v1656760672/gikczyzwxu8x8rtf9g3h.jpg"
-                        width="100%">
-                    {% else %}
-                    <img class="recipe-thumbnail" src=" {{ recipe.image.url }}" width="100%">
-                    {% endif %}
-
-                    <div class="card-body">
-                        <p class="card-text"><a href="/recipe/{{recipe.title}}">{{recipe.title}}</a></p>
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div class="btn-group">
-                                {% if request.user == recipe.author %}
-                                <button type="button" class="btn btn-sm btn-outline-secondary"><a
-                                        href="{% url 'update-recipe' recipe.title %}">Edit</a></button>
-                                <button type="button" class="btn btn-sm btn-outline-secondary"><a
-                                        href="{% url 'delete-recipe' recipe.title %}">Delete</a></button>
-                                {% else %}
-                                <small class="text-muted">Serves: {{recipe.servings}} |</small>
-                                <small class="text-muted">| {{recipe.difficulty}}</small>
-                                {% endif %}
-                            </div>
-                            <small class="text-muted">9 mins</small>
-                        </div>
+                    <div class="text-center mt-3">
+                        {% if page_obj %}
+                        <p class="fonts">Below you'll find all of {{user.username}}'s recipes.</p>
+                        {%endif%} 
                     </div>
                 </div>
             </div>
-            {% endfor %}
-
-        </div>
-        <div class="row mt-3">
-            <div class="col d-flex justify-content-center">
-                <div class="pagination">
-                    <span class="step-links">
-                        {% if page_obj.has_previous %}
-                        <a href="?page=1">&laquo; First |</a>
-                        <a href="?page={{ page_obj.previous_page_number }}">Previous |</a>
-                        {% endif %}
-
-                        <span class="current">
-                            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-                        </span>
-
-                        {% if page_obj.has_next %}
-                        <a href="?page={{ page_obj.next_page_number }}">| Next</a>
-                        <a href="?page={{ page_obj.paginator.num_pages }}">| Last &raquo;</a>
-                        {% endif %}
-                    </span>
-                </div>
-            </div>
         </div>
     </div>
 </div>
+
+{% if page_obj %}
+{% include 'home/recipe-grid.html' %}
+{%endif%}
 
 {% endblock content %}
