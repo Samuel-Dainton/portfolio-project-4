@@ -129,15 +129,15 @@ def deleteComment(request, pk):
 
 @login_required(login_url='login')
 def updateUser(request):
-    user = request.user
-    form = UserForm(instance=user)
+    userprofile = request.user.userprofile
+    form = UserForm(instance=userprofile)
 
     if request.method == 'POST':
-        form = UserForm(request.POST, request.FILES, instance=user)
+        form = UserForm(request.POST, request.FILES, instance=userprofile)
         if form.is_valid():
             form.save()
             print(form)
             print(form.data)
-            return redirect('user-profile', pk=user.id)
+            return redirect('user-profile', pk=request.user.id)
     context = {'form': form}
     return render(request, 'home/update-user.html', context)
