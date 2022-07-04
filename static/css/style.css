@@ -10,14 +10,14 @@ a {
 
 a:hover {
     background-color: rgba(49, 175, 180, 0.4);
-  }
+}
 
 .btn {
     border: 1px solid rgba(49, 175, 180, 0.4);
 }
 
 button:hover {
-        background-color: rgba(49, 175, 180, 0.4);
+    background-color: rgba(49, 175, 180, 0.4);
 }
 
 
@@ -65,7 +65,7 @@ button:hover {
 .topic-button {
     background-color: #31AFB4;
     padding: 0.3rem;
-    border-radius: 5px; 
+    border-radius: 5px;
 }
 
 .recipe-thumbnail {
@@ -92,7 +92,7 @@ button:hover {
     margin-top: 1rem;
 }
 
-.comment-profile{
+.comment-profile {
     margin-right: 0.5rem;
 }
 
@@ -108,7 +108,7 @@ button:hover {
 
 .recipe-form-container {
     margin-top: 3rem;
-    margin-bottom: 3rem;    
+    margin-bottom: 3rem;
 }
 
 .error-message {
@@ -125,49 +125,72 @@ button:hover {
     object-fit: contain;
 }
 
-body{
-    background:#eee;
+body {
+    background: #eee;
 }
 
-.profile-card{
-    border:none;
+.profile-card {
+    border: none;
     background-color: white;
-    position:relative;
-    overflow:hidden;
-    border-radius:8px;
-    cursor:pointer;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    cursor: pointer;
 }
 
-.recipe-card:before{
-    
-    content:"";
-    position:absolute;
-    left:0;
-    top:0;
-    width:4px;
-    height:100%;
-    background-color:#E1BEE7;
-    transform:scaleY(1);
-    transition:all 0.5s;
+.recipe-card:before {
+
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #E1BEE7;
+    transform: scaleY(1);
+    transition: all 0.5s;
     transform-origin: bottom
 }
 
-.recipe-card:after{
-    
-    content:"";
-    position:absolute;
-    left:0;
-    top:0;
-    width:4px;
-    height:100%;
-    background-color:#8E24AA;
-    transform:scaleY(0);
-    transition:all 0.5s;
+.recipe-card:after {
+
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background-color: #8E24AA;
+    transform: scaleY(0);
+    transition: all 0.5s;
     transform-origin: bottom
 }
 
-.recipe-card:hover::after{
-    transform:scaleY(1);
+.recipe-card:hover::after {
+    transform: scaleY(1);
+}
+
+/* Footer */
+
+html,
+body {
+    height: 100%;
+}
+
+#wrap {
+    min-height: 100%;
+}
+
+#main {
+    overflow: auto;
+    padding-bottom: 130px;
+    /* this needs to be bigger than footer height*/
+}
+
+.footer {
+    position: relative;
+    margin-top: -150px;
+    clear: both;
 }
 
 
@@ -178,4 +201,3 @@ body{
         margin-top: 0px;
     }
 }
-
