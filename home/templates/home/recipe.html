@@ -114,8 +114,6 @@
             </div>
         </div>
     </div>
-    </div>
-    </div>
 </section>
 
 <section>
@@ -133,75 +131,77 @@
                     {{recipe.method|safe}}
                 </div>
             </div>
-
         </div>
     </div>
 </section>
 
-<div class="container mt-5">
-    <div class="row d-flex justify-content-center">
-        <div class="col-md-12">
-            <div class="headings d-flex justify-content-between align-items-center mb-3">
-                <h5><u>Comments</u></h5>
-            </div>
-            {% if request.user.is_authenticated %}
-            <p>
-                <button class="btn btn-primary topic-button" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                    + Leave A Comment
-                </button>
-            </p>
-            <div class="collapse" id="collapseExample">
-                <div class="card card-body">
-                    <form action="" method="POST">
-                        {% csrf_token %}
-                        <input type="text" name="body"
-                            placeholder="Write your comment here and press 'enter' to submit." class="comment-input">
-                    </form>
+<section>
+    <div class="container mt-5 mb-5">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-12">
+                <div class="headings d-flex justify-content-between align-items-center mb-3">
+                    <h5><u>Comments</u></h5>
                 </div>
-            </div>
-            {% else %}
-            <p>You'll need to
-                <a class="dropdown-item" href="{% url 'account_login' %}">Login</a>/
-                <a class="dropdown-item" href="{% url 'account_signup' %}">Signup</a>
-                to leave your own comments.</p>
-            {% endif %}
-            {% for comment in comments %}
-            <div class="card comment-card p-3">
-
-                <div class="d-flex justify-content-between align-items-center">
-
-                    <div class="d-flex flex-row align-items-center">
-
-                        <img src="https://i.imgur.com/hczKIze.jpg" width="30"
-                            class="comment-profile user-img rounded-circle mr-2">
-
-                        <span>
-                            <medium class="font-weight-bold text-primary"> {{comment.user}}: </medium>
-                            <medium class="font-weight-bold">{{comment.body}}</medium>
-                        </span>
-
-                    </div>
-                    <small class="comment-date">{{comment.created|timesince}} ago.</small>
-                </div>
-
-                <div class="action d-flex justify-content-between mt-2 align-items-center">
-
-                    <div class="reply px-4">
-                        {% if request.user == comment.user %}
-                        <a href="{% url 'delete-comment' comment.id %}"
-                            class="btn btn-primary topic-button btn-sm">Delete Comment</a>
-                        {% endif %}
-                    </div>
-
-                    <div class="icons align-items-center">
-                        <i class="fa fa-star text-warning"></i>
-                        <i class="fa fa-check-circle-o check-icon"></i>
+                {% if request.user.is_authenticated %}
+                <p>
+                    <button class="btn btn-primary topic-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        + Leave A Comment
+                    </button>
+                </p>
+                <div class="collapse" id="collapseExample">
+                    <div class="card card-body">
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <input type="text" name="body"
+                                placeholder="Write your comment here and press 'enter' to submit."
+                                class="comment-input">
+                        </form>
                     </div>
                 </div>
+                {% else %}
+                <p>You'll need to
+                    <a class="dropdown-item" href="{% url 'account_login' %}">Login</a>/
+                    <a class="dropdown-item" href="{% url 'account_signup' %}">Signup</a>
+                    to leave your own comments.</p>
+                {% endif %}
+                {% for comment in comments %}
+                <div class="card comment-card p-3">
+
+                    <div class="d-flex justify-content-between align-items-center">
+
+                        <div class="d-flex flex-row align-items-center">
+
+                            <img src="https://i.imgur.com/hczKIze.jpg" width="30"
+                                class="comment-profile user-img rounded-circle mr-2">
+
+                            <span>
+                                <medium class="font-weight-bold text-primary"> {{comment.user}}: </medium>
+                                <medium class="font-weight-bold">{{comment.body}}</medium>
+                            </span>
+
+                        </div>
+                        <small class="comment-date">{{comment.created|timesince}} ago.</small>
+                    </div>
+
+                    <div class="action d-flex justify-content-between mt-2 align-items-center">
+
+                        <div class="reply px-4">
+                            {% if request.user == comment.user %}
+                            <a href="{% url 'delete-comment' comment.id %}"
+                                class="btn btn-primary topic-button btn-sm">Delete Comment</a>
+                            {% endif %}
+                        </div>
+
+                        <div class="icons align-items-center">
+                            <i class="fa fa-star text-warning"></i>
+                            <i class="fa fa-check-circle-o check-icon"></i>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
             </div>
-            {% endfor %}
         </div>
     </div>
-</div>
+</section>
 {% endblock content %}
