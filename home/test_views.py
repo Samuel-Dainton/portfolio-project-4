@@ -6,21 +6,28 @@ from .models import Recipe, Comment
 class TestViews(TestCase):
 
     def setUp(self):
-        test_user = User.objects.create(
-            username='testuser', password='abc123'
+        self.test_user = User.objects.create(
+            password='abc123', username='testuser'
             )
 
-        self.recipe = Recipe.objects.create(title='Test', author=test_user)
+        self.recipe = Recipe.objects.create(title='Test', author=self.test_user)
         self.vegan_recipe = Recipe.objects.create(
-            title='Onion Gravy'
+            title='Onion Gravy',
+            author= self.test_user
             )
         self.vegetarian_recipe = Recipe.objects.create(
-            title='Chicken'
+            title='Salad',
+            author= self.test_user
             )
+
         self.comment = Comment.objects.create(
-            body='Test Comment', recipe=self.recipe, user='testuser'
+            body='Test Comment', recipe=self.recipe, user=self.test_user
             )
         self.client.login(username='testuser', password='abc123')
+
+    def test_user_pw(self):
+        checked = self.test_user.check_password('abc123')
+        self.assertTrue(checked)
 
     def test_get_home_page(self):
         response = self.client.get('')
