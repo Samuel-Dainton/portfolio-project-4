@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
-from .models import Recipe, Comment, Allergy, UserProfile
+from .models import Recipe, Comment, Allergy, UserProfile, Like
 from .forms import RecipeForm, UserForm
 from django.contrib.auth.models import User
 
@@ -56,7 +56,7 @@ def userProfile(request, pk):
 def recipe(request, title):
     recipe = Recipe.objects.get(title=title)
     comments = recipe.comment_set.all().order_by('-created')
-
+    
     if request.method == 'POST':
         comment = Comment.objects.create(
             user = request.user,
@@ -68,6 +68,26 @@ def recipe(request, title):
     context = {'recipe': recipe, 'comments':comments}
     return render(request, 'home/recipe.html', context)
 
+def like_recipe(request):
+    user = request.user
+    if request.method == 'POST':
+        recipe_id = request.POST.get('recipe_id')
+        recipe_obj = Recipe.objects.get(id=recipe_id)
+
+        if user in recipe_obj.liked.all():
+            recipe_obj.liked.remove(user)
+        else:
+            recipe_obj.liked.add(user)
+        like, created = Like.objects.get_or_create(user=user, recipe_id=recipe_id)
+
+        if not created:
+            if like.value == 'Like':
+                like.value = 'Unlike'
+            else:
+                like.value = 'Like'
+        like.save()
+
+    return redirect('home/recipe.html')
 
 @login_required
 def createRecipe(request):

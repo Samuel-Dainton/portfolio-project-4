@@ -40,7 +40,8 @@ class Recipe(models.Model):
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     topic = models.ManyToManyField(Topic,)
     allergy_info = models.ManyToManyField(Allergy,)
-
+    liked = models.ManyToManyField(User, default=None, blank=True, related_name='liked')
+    
     # basics
     title = models.CharField(max_length=200, unique=True)
     prep_time = models.PositiveIntegerField(null=True, blank=False)
@@ -87,6 +88,23 @@ class Recipe(models.Model):
     def __str__(self):
         return self.title
 
+
+    @property
+    def num_likes(self):
+        return self.liked.all().count()
+
+LIKE_CHOICES = (
+    ('Like', 'Like'),
+    ('Unlike', 'Unlike')
+)
+
+class Like(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
+    value = models.CharField(choices=LIKE_CHOICES, default='Like', max_length=10)
+
+    def __str__(self):
+        return str(self.recipe)
 
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

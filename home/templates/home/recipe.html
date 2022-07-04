@@ -2,6 +2,16 @@
 
 {% block content %}
 
+<form action="{% url 'like-recipe' %}" method="POST" class="like-form">
+    {%csrf_token%}
+    <input type="hidden" name='recipe_id' value="{{recipe.id}}">
+    {% if user not in obj.liked.all %}
+    <button class="ui button positive" type="submit">Like</button>
+    {% else %}
+    <button class="ui button negative" type="submit">Un-Like</button>
+    {% endif %}
+</form>
+<strong>{{obj.liked.all.count}} likes</strong>
 
 <section>
     <div class="container shadow py-4 mt-3 recipe-intro-container">
