@@ -25,7 +25,8 @@
                 {% if form.errors %}
                 <h4 class="text-center error-message">Please make sure you've filled in all fields marked with an *.
                 </h4>
-                <h4>{{form.errors}</h4>
+                
+                <p class="text-center">{{form.errors}}</p>
                 {% endif %}
 
                 <form action="" method="post" enctype="multipart/form-data">
@@ -141,7 +142,7 @@
 
                   <!-- Submit button -->
                   <div class="d-flex justify-content-center">
-                    <button type="submit" value="Submit" class="btn btn-rounded btn-block">Submit
+                    <button type="submit" value="Submit" class="btn btn-rounded btn-block" onclick="this.disabled=true;this.value='Sending, please wait...';this.form.submit();">Submit
                       Recipe</button></div>
                 </form>
 
