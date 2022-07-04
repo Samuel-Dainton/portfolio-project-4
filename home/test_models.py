@@ -5,6 +5,11 @@ from .models import Comment, Recipe
 
 class TestModels(TestCase):
 
+    def setUp(self):
+        self.test_user = User.objects.create(
+            password='abc123', username='testuser'
+            )
+
     def test_recipe_model_str(self):
 
         recipe = Recipe.objects.create(title='Test Recipe')
@@ -19,8 +24,8 @@ class TestModels(TestCase):
 
         recipe = Recipe.objects.create(title='Test Recipe')
         comment = Comment.objects.create(
-            body='Test',
+            body='Comment Test by test_user',
             recipe=recipe,
-            user='test_user'
+            user=self.test_user
             )
         self.assertEqual(str(comment), 'Comment Test by test_user')

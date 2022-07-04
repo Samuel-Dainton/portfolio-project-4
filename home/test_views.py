@@ -7,7 +7,7 @@ class TestViews(TestCase):
 
     def setUp(self):
         self.test_user = User.objects.create(
-            password='abc123', username='testuser'
+            password='abc123', username='testuser', user=1
             )
 
         self.recipe = Recipe.objects.create(title='Test', author=self.test_user)
