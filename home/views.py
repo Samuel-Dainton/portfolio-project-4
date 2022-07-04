@@ -140,4 +140,4 @@ def updateUser(request):
             print(form.data)
             return redirect('user-profile', pk=request.user.id)
     context = {'form': form}
-    return render(request, 'home/update-user.html', context)
+    return render(request, 'home/update_user.html', context)

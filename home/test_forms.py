@@ -53,14 +53,16 @@ class TestRecipeForm(TestCase):
                 'difficulty': 'Easy', 'servings': '12'
                 }
             )
-        print(form.errors)
         self.assertTrue(form.is_valid())
 
-# class TestCommentForm(TestCase):
+class TestUserForm(TestCase):
 
-#     # Test to check non required fields do not have to be present
+    # Test to check non required fields do not have to be present
     
-#     def test_non_required_fields_are_not_required(self):
+    def test_non_required_fields_are_not_required(self):
 
-#         form = RecipeForm()
-#         self.assertTrue(form.is_valid())
+        form = UserForm({
+            'bio': '', 'avatar': ''
+        })
+        self.assertTrue(form.is_valid())
+        
