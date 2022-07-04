@@ -23,8 +23,9 @@
                 <h1 class="mb-5 text-center">Create Your Recipe</h1>
 
                 {% if form.errors %}
-                <h2 class="text-center error-message">Please make sure you've filled in all fields marked with an *.
-                </h2>
+                <h4 class="text-center error-message">Please make sure you've filled in all fields marked with an *.
+                </h4>
+                <h4>{{form.errors}</h4>
                 {% endif %}
 
                 <form action="" method="post" enctype="multipart/form-data">

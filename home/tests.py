@@ -1,10 +1,19 @@
 from django.test import TestCase
-from .forms import RecipeForm, UserForm
+from .forms import RecipeForm, UserForm, Topic, Allergy
 
 
 class TestRecipeForm(TestCase):
 
     # Tests to check required fields are not blank
+    def setUp(self):
+
+        topic_1 = Topic.objects.create(
+        name='topic 1',
+        )
+
+        allergy_1 = Allergy.objects.create(
+        name='nuts',
+        )
 
     def test_recipe_title_is_required(self):
         form = RecipeForm({'title': ''})
@@ -32,11 +41,14 @@ class TestRecipeForm(TestCase):
 
     def test_non_required_fields_are_not_required(self):
 
+
         form = RecipeForm(
             {
                 'title': 'Test', 'description': 'Test',
-                'ingredient': 'Test', 'method': 'Test',
-                'topic': ['test'], 'allergy_info': ['test', 'test'],
+                'ingredient': ['Test'], 'method': 'Test',
+
+                'topic': ['1'], 'allergy_info': ['1'],
+
                 'prep_time': '1', 'cook_time': '1', 'author': 'Test',
                 'difficulty': 'Easy', 'servings': '12'
                 }
@@ -44,11 +56,11 @@ class TestRecipeForm(TestCase):
         print(form.errors)
         self.assertTrue(form.is_valid())
 
-class TestCommentForm(TestCase):
+# class TestCommentForm(TestCase):
 
-    # Test to check non required fields do not have to be present
+#     # Test to check non required fields do not have to be present
     
-    def test_non_required_fields_are_not_required(self):
+#     def test_non_required_fields_are_not_required(self):
 
-        form = RecipeForm()
-        self.assertTrue(form.is_valid())
+#         form = RecipeForm()
+#         self.assertTrue(form.is_valid())
