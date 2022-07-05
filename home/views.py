@@ -141,15 +141,17 @@ def deleteRecipe(request, title):
     return render(request, 'home/delete.html', {'selected_object': recipe})
 
 @login_required()
-def deleteComment(request, pk):
+def deleteComment(request, pk, recipe):
+    
     comment = Comment.objects.get(id=pk)
+    recipe_obj = Recipe.objects.get(title=recipe)
 
     if request.user != comment.user:
         return HttpResponse('This is not your recipe to delete.')
 
     if request.method == 'POST':
         comment.delete()
-        return redirect('home')
+        return redirect(reverse('recipe', kwargs={'title':recipe_obj}))
     return render(request, 'home/delete.html', {'selected_object': comment})
 
 @login_required(login_url='login')

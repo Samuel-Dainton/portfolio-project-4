@@ -209,7 +209,7 @@
 
                         <div class="reply px-4">
                             {% if request.user == comment.user %}
-                            <a href="{% url 'delete-comment' comment.id %}"><button type="button"
+                            <a href="{% url 'delete-comment' comment.id recipe %}"><button type="button"
                                     class="btn btn-sm btn-outline-secondary">Delete Comment</button></a>
                             {% endif %}
                         </div>
