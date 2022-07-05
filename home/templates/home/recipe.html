@@ -16,10 +16,10 @@
 <section>
     <div class="container shadow py-4 mt-3 recipe-intro-container">
         {% if request.user == recipe.author %}
-        <button type="button" class="btn btn-sm btn-outline-secondary"><a
-                href="{% url 'update-recipe' recipe.title %}">Edit</a></button>
-        <button type="button" class="btn btn-sm btn-outline-secondary"><a
-                href="{% url 'delete-recipe' recipe.title %}">Delete</a></button>
+        <a href="{% url 'update-recipe' recipe.title %}"><button type="button"
+                class="btn btn-sm btn-outline-secondary">Edit</button></a>
+        <a href="{% url 'delete-recipe' recipe.title %}"><button type="button"
+                class="btn btn-sm btn-outline-secondary">Delete</button></a>
         {% endif %}
         <div class="row align-items-md-stretch">
 
@@ -40,8 +40,17 @@
                             <h3>{{recipe.title}}</h3>
                         </div>
 
-                        <div>
-                            <h5 class="text-muted">By <a
+                        <div class="d-inline-flex mb-2">
+                            {% if "avatarplaceholder" in recipe.image.url %}
+                            <a href="{% url 'user-profile' recipe.author.id%}"><img
+                                    src="https://res.cloudinary.com/samuel-dainton/image/upload/v1656845904/chef_dvaqcl.png"
+                                    width="100" class="rounded-circle recipe-avatar"></a>
+                            {% else %}
+                            <a href="{% url 'user-profile' recipe.author.id%}"><img
+                                    src="{{recipe.author.userprofile.avatar.url}}" width="100"
+                                    class="rounded-circle recipe-avatar"></a>
+                            {%endif%}
+                            <h5 class="text-muted recipe-author">By <a
                                     href="{% url 'user-profile' recipe.author.id %}">{{recipe.author}}</a></h5>
                         </div>
 
@@ -144,7 +153,7 @@
                 </div>
                 {% if request.user.is_authenticated %}
                 <p>
-                    <button class="btn btn-primary topic-button" type="button" data-bs-toggle="collapse"
+                    <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
                         data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                         + Leave A Comment
                     </button>
@@ -160,9 +169,10 @@
                     </div>
                 </div>
                 {% else %}
+
                 <p>You'll need to
-                    <a class="dropdown-item" href="{% url 'account_login' %}">Login</a>/
-                    <a class="dropdown-item" href="{% url 'account_signup' %}">Signup</a>
+                    <a href="{% url 'account_login' %}">Login</a>/
+                    <a href="{% url 'account_signup' %}">Signup</a>
                     to leave your own comments.</p>
                 {% endif %}
                 {% for comment in comments %}
@@ -172,11 +182,19 @@
 
                         <div class="d-flex flex-row align-items-center">
 
-                            <img src="https://i.imgur.com/hczKIze.jpg" width="30"
-                                class="comment-profile user-img rounded-circle mr-2">
+                            {% if "avatarplaceholder" in recipe.image.url %}
+                            <a href="{% url 'user-profile' comment.user.id%}"><img
+                                    src="https://res.cloudinary.com/samuel-dainton/image/upload/v1656845904/chef_dvaqcl.png"
+                                    width="100" class="rounded-circle comment-avatar"></a>
+                            {% else %}
+                            <a href="{% url 'user-profile' comment.user.id%}"><img
+                                    src="{{comment.user.userprofile.avatar.url}}" width="100"
+                                    class="rounded-circle comment-avatar"></a>
+                            {%endif%}
 
-                            <span>
-                                <medium class="font-weight-bold text-primary"> {{comment.user}}: </medium>
+                            <span class="comment-container">
+                                <medium class="font-weight-bold text-primary"><a
+                                        href="{% url 'user-profile' comment.user.id%}"> {{comment.user}}:</a> </medium>
                                 <medium class="font-weight-bold">{{comment.body}}</medium>
                             </span>
 
@@ -188,14 +206,9 @@
 
                         <div class="reply px-4">
                             {% if request.user == comment.user %}
-                            <a href="{% url 'delete-comment' comment.id %}"
-                                class="btn btn-primary topic-button btn-sm">Delete Comment</a>
+                            <a href="{% url 'delete-comment' comment.id %}"><button type="button"
+                                    class="btn btn-sm btn-outline-secondary">Delete Comment</button></a>
                             {% endif %}
-                        </div>
-
-                        <div class="icons align-items-center">
-                            <i class="fa fa-star text-warning"></i>
-                            <i class="fa fa-check-circle-o check-icon"></i>
                         </div>
                     </div>
                 </div>

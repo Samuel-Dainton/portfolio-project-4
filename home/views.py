@@ -68,7 +68,7 @@ def recipe(request, title):
     context = {'recipe': recipe, 'comments':comments}
     return render(request, 'home/recipe.html', context)
 
-def like_recipe(request):
+def likeRecipe(request):
     user = request.user
     if request.method == 'POST':
         recipe_id = request.POST.get('recipe_id')

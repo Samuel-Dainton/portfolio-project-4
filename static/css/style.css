@@ -1,14 +1,22 @@
 body {
     font-family: 'Alegreya', serif;
+    font-weight: 400;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: 'Gentium', 'serif';
     font-weight: 700;
 }
 
 a {
     text-decoration: none;
-    color: black;
 }
 
-a:hover {
+.nav-item:hover {
     background-color: rgba(49, 175, 180, 0.4);
 }
 
@@ -20,12 +28,13 @@ button:hover {
     background-color: rgba(49, 175, 180, 0.4);
 }
 
-
 .navbar-brand {
     background: url("../images/logo_small.png") no-repeat;
     height: 5rem;
     width: 16.5rem;
 }
+
+/* Carousel */
 
 .carousel-container {
     background-color: rgba(49, 175, 180, 0.4);
@@ -53,6 +62,8 @@ button:hover {
     background: url("/static/images/baker.png") no-repeat;
 }
 
+/* Search Bar */
+
 .fa-search {
     margin: 1rem;
 }
@@ -62,20 +73,64 @@ button:hover {
     border: 2px solid #31AFB4;
 }
 
-.topic-button {
+/* Topics */
+
+.topic-button-container {
     background-color: #31AFB4;
     padding: 0.3rem;
     border-radius: 5px;
+    color: black;
+    font-family: 'Gentium', 'serif';
+    font-weight: 400;
 }
+
+.topic-button {
+    --s: 0.1em;
+    /* the thickness of the line */
+    --c: #ffffff;
+    /* the color */
+    color: black;
+    padding-bottom: var(--s);
+    background:
+        linear-gradient(90deg, var(--c) 50%, #000 0) calc(100% - var(--_p, 0%))/200% 100%,
+        linear-gradient(var(--c) 0 0) 0% 100%/var(--_p, 0%) var(--s) no-repeat;
+    -webkit-background-clip: text, padding-box;
+    background-clip: text, padding-box;
+    transition: 0.5s;
+}
+
+.topic-button:hover {
+    --_p: 100%;
+    color: white;
+}
+
+/* Recipe Grid */
 
 .recipe-thumbnail {
     min-height: 15rem;
     object-fit: fill;
 }
 
-.recipe-info-card {
-    min-height: 6.438rem;
+.recipe-card-title {
+    --s: 0.1em;
+    /* the thickness of the line */
+    --c: #1095c1;
+    /* the color */
+    color: black;
+    padding-bottom: var(--s);
+    background:
+        linear-gradient(90deg, var(--c) 50%, #000 0) calc(100% - var(--_p, 0%))/200% 100%,
+        linear-gradient(var(--c) 0 0) 0% 100%/var(--_p, 0%) var(--s) no-repeat;
+    -webkit-background-clip: text, padding-box;
+    background-clip: text, padding-box;
+    transition: 0.5s;
 }
+
+.recipe-card-title:hover {
+    --_p: 100%
+}
+
+
 
 
 /* Recipe Detail Page */
@@ -98,6 +153,25 @@ button:hover {
 
 .comment-date {
     margin-left: 1rem;
+}
+
+.comment-container {
+    margin-left: 1rem;
+}
+
+.recipe-avatar {
+    height: 4rem;
+    width: 4rem;
+}
+
+.recipe-author {
+    margin: auto;
+    margin-left: 1rem;
+}
+
+.comment-avatar {
+    height: 3rem;
+    width: 3rem;
 }
 
 /* Create Recipe Page */

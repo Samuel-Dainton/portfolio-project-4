@@ -6,9 +6,11 @@
         </div>
 
         <div class="col-md-8 text-center">
+            <div class="d-inline-flex m-1 topic-button-container">
             <a class="topic-button" href="{% url 'home' %}">All</a>
+        </div>
             {% for topic in topics %}
-            <div class="d-inline-flex m-1">
+            <div class="d-inline-flex m-1 topic-button-container">
                 <a class="topic-button" href="{% url 'home' %}?q={{topic.name}}">{{topic.name}}</a>
             </div>
             {% endfor %}
