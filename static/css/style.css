@@ -16,12 +16,20 @@ a {
     text-decoration: none;
 }
 
+.nav-item {
+    transition: 0.5s;
+}
+
 .nav-item:hover {
     background-color: rgba(49, 175, 180, 0.4);
 }
 
 .btn {
     border: 1px solid rgba(49, 175, 180, 0.4);
+}
+
+button {
+    transition: 0.5s;
 }
 
 button:hover {
@@ -41,12 +49,16 @@ button:hover {
     margin-top: 4rem;
 }
 
+.carousel-button:hover {
+    background-color: transparent;
+}
+
 .carousel-item {
     height: 400px;
 }
 
 .carousel-caption {
-    background-color: rgba(49, 175, 180, 0.6);
+    background-color: #252225b7;;
     border-radius: 5px;
 }
 

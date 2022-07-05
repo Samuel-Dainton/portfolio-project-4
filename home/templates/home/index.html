@@ -2,10 +2,10 @@
 {% load static %}
 {% block content %}
 
-<section class="py-5 text-center container carousel-container">
-    <div class="row py-lg-5">
-        <div class="col-lg-10 col-md-8 mx-auto">
-            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+<section class="container mx-auto">
+    <div class="row p-3 p-md-5 text-center carousel-container">
+        <div class="col-12 mx-auto">
+            <div id="carouselExampleCaptions" class="carousel carousel-fade slide" data-ride="carousel">
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
                         aria-current="true" aria-label="Slide 1"></button>
@@ -23,28 +23,31 @@
                                 skills.</p>
                         </div>
                     </div>
-                    <div class="carousel-item carousel-image-2">
-                        <div class="carousel-caption">
-                            <h5>Crying Tiger Salad</h5>
-                            <p>This week we're featuring this stunning new recipe, click <a>here</a> to read more.
-                            </p>
+                    <a href="#">
+                        <div class="carousel-item carousel-image-2">
+                            <div class="carousel-caption">
+                                <h5>Crying Tiger Salad</h5>
+                                <p>This week we're featuring this stunning new recipe, click here to read more.
+                                </p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                     <div class="carousel-item carousel-image-3">
-                        <div class="carousel-caption">
-                            <h5>Better Baking with Brad</h5>
-                            <p>These tips from our good friend Brad will help raise your baking to the next level.
+                        <div class="carousel-caption p-1">
+                            <h5>Coming Soon:<br>Better Baking with Brad</h5>
+                            <p>Next week we're going to be publishing our first article, starting with some baking tips
+                                from our good friend Brad who will help 'raise' your baking to the next level.
                             </p>
                         </div>
                     </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
-                    data-bs-slide="prev">
+                <button class="carousel-button carousel-control-prev" type="button"
+                    data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
-                    data-bs-slide="next">
+                <button class="carousel-button carousel-control-next" type="button"
+                    data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
@@ -52,6 +55,7 @@
         </div>
     </div>
 </section>
+
 <div class="container mt-5 mb-2">
     <div class="row height d-flex justify-content-center align-items-center">
 
