@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponse
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
@@ -65,19 +65,22 @@ def recipe(request, title):
         )
         return redirect('recipe', title=recipe.title)
 
-    context = {'recipe': recipe, 'comments':comments}
+    liked_list = recipe.liked.all()
+
+    context = {'recipe': recipe, 'comments':comments, 'liked_list': liked_list}
     return render(request, 'home/recipe.html', context)
 
 def likeRecipe(request):
     user = request.user
+    print(user.id)
     if request.method == 'POST':
         recipe_id = request.POST.get('recipe_id')
         recipe_obj = Recipe.objects.get(id=recipe_id)
 
         if user in recipe_obj.liked.all():
-            recipe_obj.liked.remove(user)
+            recipe_obj.liked.remove(user.id)
         else:
-            recipe_obj.liked.add(user)
+            recipe_obj.liked.add(user.id)
         like, created = Like.objects.get_or_create(user=user, recipe_id=recipe_id)
 
         if not created:
@@ -87,7 +90,9 @@ def likeRecipe(request):
                 like.value = 'Like'
         like.save()
 
-    return redirect('home/recipe.html')
+    # return redirect('recipe', kwargs={'title':recipe_obj})
+    # return render(request, 'home/recipe.html', {'recipe_obj':recipe_obj})
+    return redirect(reverse('recipe', kwargs={'title':recipe_obj}))
 
 @login_required
 def createRecipe(request):
