@@ -1,14 +1,16 @@
 <div class="container mb-5">
     <div class="row height d-flex justify-content-center align-items-center">
-
+        <!--Search bar above-->
         <div class="col-md-8 text-center">
             <h5 class="mt-2">Or click on a tag to browse recipes by topic.</h5>
         </div>
-
+        <!--Singular 'All' topic-->
         <div class="col-md-8 text-center">
             <div class="d-inline-flex m-1 topic-button-container">
             <a class="topic-button" href="{% url 'home' %}">All</a>
         </div>
+        <!--Displays a topic button for each topic-->
+        <div>
             {% for topic in topics %}
             <div class="d-inline-flex m-1 topic-button-container">
                 <a class="topic-button" href="{% url 'home' %}?q={{topic.name}}">{{topic.name}}</a>

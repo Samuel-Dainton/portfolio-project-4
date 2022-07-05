@@ -2,22 +2,26 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-<div class="mt-5 mb-5">
-    <div class="row d-flex justify-content-center">
-        <div class="col-md-7">
-            <div class="profile-card p-3 py-4">
-                <div class="text-center">
-                    {% if "avatarplaceholder" in recipe.image.url %}
-                    <img src="https://res.cloudinary.com/samuel-dainton/image/upload/v1656845904/chef_dvaqcl.png"
-                        width="100" class="rounded-circle">
-                    {% else %}
-                    <img src="{{user.userprofile.avatar.url}}" width="100" class="rounded-circle">
-                    {%endif%}
-                </div>
 
-                <div class="text-center mt-3">
-                    <h4 class="mt-2 mb-0">{{user.username}}</h5>
+<section>
+    <div class="mt-5 mb-5">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-7">
+                <div class="profile-card p-3 py-4">
 
+                    <div class="text-center">
+                        {% if "avatarplaceholder" in recipe.image.url %}
+                        <img src="https://res.cloudinary.com/samuel-dainton/image/upload/v1656845904/chef_dvaqcl.png"
+                            width="100" class="rounded-circle">
+                        {% else %}
+                        <img src="{{user.userprofile.avatar.url}}" width="100" class="rounded-circle">
+                        {%endif%}
+                    </div>
+
+                    <div class="text-center mt-3">
+                        <div>
+                            <h4 class="mt-2 mb-0">{{user.username}}</h4>
+                        </div>
                         <div class="px-4 mt-1">
                             {% if user.userprofile.bio == blank %}
                             <p>{{user.username}} hasn't written anything here yet.</p>
@@ -25,7 +29,6 @@
                             <p>{{user.userprofile.bio}}</p>
                             {%endif%}
                         </div>
-
                         <div class="text-center mt-5">
                             {% if page_obj %}
                             <p class="text-muted">Below you'll find all of
@@ -38,13 +41,14 @@
                             <a href="{% url 'update-user' %}">Update Profile</a>
                             {%endif%}
                         </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-{% if page_obj %}
-{% include 'home/recipe_grid.html' %}
-{%endif%}
-{% endblock content %}
+    {% if page_obj %}
+    {% include 'home/recipe_grid.html' %}
+    {%endif%}
+    {% endblock content %}

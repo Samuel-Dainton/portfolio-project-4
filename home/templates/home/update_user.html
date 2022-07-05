@@ -10,7 +10,6 @@
 
       <form class="form" action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-
         {{form|crispy}}
 
         <a class="btn btn--dark" href="{% url 'user-profile' request.user.id%}">Cancel</a>
@@ -20,4 +19,5 @@
     </div>
   </div>
 </div>
+
 {% endblock content %}

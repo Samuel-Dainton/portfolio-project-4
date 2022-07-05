@@ -14,9 +14,8 @@ def topic(request):
 
 def home(request):
     
+    # Search Function
     q = request.GET.get('q') if request.GET.get('q') != None else ''
-
-
     if q:
         recipe_list = Recipe.objects.filter(
             Q(topic__name__icontains=q) |
@@ -26,14 +25,15 @@ def home(request):
     else:
         recipe_list = Recipe.objects.all()
 
-
+    # Checks that only one instance of each recipe is returned
     mylist = recipe_list.distinct()
 
+    # Recipe counter
     recipe_counter = Recipe.objects.all()
     recipe_count = recipe_counter.count()
 
-    paginator = Paginator(mylist, 12) # Show 12 recipes per page.
-
+    # Paginator, 12 recipes per page
+    paginator = Paginator(mylist, 12)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
@@ -42,10 +42,11 @@ def home(request):
 
 
 def userProfile(request, pk):
+
     user = User.objects.get(id=pk)
     recipes = user.recipe_set.all()
 
-    paginator = Paginator(recipes, 12) # Show 12 recipes per page.
+    paginator = Paginator(recipes, 12)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
@@ -54,9 +55,11 @@ def userProfile(request, pk):
 
 
 def recipe(request, title):
+
     recipe = Recipe.objects.get(title=title)
     comments = recipe.comment_set.all().order_by('-created')
     
+    # Comment post method
     if request.method == 'POST':
         comment = Comment.objects.create(
             user = request.user,
@@ -71,8 +74,9 @@ def recipe(request, title):
     return render(request, 'home/recipe.html', context)
 
 def likeRecipe(request):
+
     user = request.user
-    print(user.id)
+
     if request.method == 'POST':
         recipe_id = request.POST.get('recipe_id')
         recipe_obj = Recipe.objects.get(id=recipe_id)
@@ -90,8 +94,6 @@ def likeRecipe(request):
                 like.value = 'Like'
         like.save()
 
-    # return redirect('recipe', kwargs={'title':recipe_obj})
-    # return render(request, 'home/recipe.html', {'recipe_obj':recipe_obj})
     return redirect(reverse('recipe', kwargs={'title':recipe_obj}))
 
 @login_required
@@ -115,6 +117,7 @@ def updateRecipe(request, title):
     recipe = Recipe.objects.get(title=title)
     form = RecipeForm(instance=recipe)
     
+    # Checks that user is the author incase unothorised user accesses the page
     if request.user != recipe.author:
         return HttpResponse('This is not your recipe to edit.')
 
@@ -130,6 +133,7 @@ def updateRecipe(request, title):
 
 @login_required()
 def deleteRecipe(request, title):
+
     recipe = Recipe.objects.get(title=title)
 
     if request.user != recipe.author:
@@ -147,15 +151,18 @@ def deleteComment(request, pk, recipe):
     recipe_obj = Recipe.objects.get(title=recipe)
 
     if request.user != comment.user:
-        return HttpResponse('This is not your recipe to delete.')
+        return HttpResponse('This is not your comment to delete.')
 
+    # Delete function returns the user back to the recipe page they came from
     if request.method == 'POST':
         comment.delete()
         return redirect(reverse('recipe', kwargs={'title':recipe_obj}))
+
     return render(request, 'home/delete.html', {'selected_object': comment})
 
 @login_required(login_url='login')
 def updateUser(request):
+
     userprofile = request.user.userprofile
     form = UserForm(instance=userprofile)
 
@@ -166,5 +173,6 @@ def updateUser(request):
             print(form)
             print(form.data)
             return redirect('user-profile', pk=request.user.id)
+
     context = {'form': form}
     return render(request, 'home/update_user.html', context)

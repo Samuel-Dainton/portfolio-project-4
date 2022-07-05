@@ -2,6 +2,7 @@
 {% load static %}
 {% block content %}
 
+<!--Carousel-->
 <section class="container mx-auto">
     <div class="row p-3 p-md-5 text-center carousel-container">
         <div class="col-12 mx-auto">
@@ -23,15 +24,14 @@
                                 skills.</p>
                         </div>
                     </div>
-                    <a href="#">
-                        <div class="carousel-item carousel-image-2">
-                            <div class="carousel-caption">
-                                <h5>Crying Tiger Salad</h5>
-                                <p>This week we're featuring this stunning new recipe, click here to read more.
-                                </p>
-                            </div>
+                    <div class="carousel-item carousel-image-2">
+                        <div class="carousel-caption">
+                            <h5>Crying Tiger Salad</h5>
+                            <p>This week we're featuring this stunning new recipe, click <a href="#">here</a> to read
+                                more.
+                            </p>
                         </div>
-                    </a>
+                    </div>
                     <div class="carousel-item carousel-image-3">
                         <div class="carousel-caption p-1">
                             <h5>Coming Soon:<br>Better Baking with Brad</h5>
@@ -56,18 +56,21 @@
     </div>
 </section>
 
-<div class="container mt-5 mb-2">
-    <div class="row height d-flex justify-content-center align-items-center">
+<!--Search Bar-->
+<section>
+    <div class="container mt-5 mb-2">
+        <div class="row height d-flex justify-content-center align-items-center">
 
-        <div class="col-md-8">
-            <h4 class="text-center">Search our collection of {{recipe_count}} recipes!</h4>
-            <form method="GET" class="d-flex justify-content-center" action="{% url 'home' %}">
-                <i class="fa fa-search"></i><input type="text" class="search-bar" name="q"
-                    placeholder="Recipe, Ingredient, Catagory...">
-            </form>
+            <div class="col-md-8">
+                <h4 class="text-center">Search our collection of {{recipe_count}} recipes!</h4>
+                <form method="GET" class="d-flex justify-content-center" action="{% url 'home' %}">
+                    <i class="fa fa-search"></i><input type="text" class="search-bar" name="q"
+                        placeholder="Recipe, Ingredient, Catagory...">
+                </form>
+            </div>
         </div>
     </div>
-</div>
+</section>
 
 {% include 'home/browse.html' %}
 {% include 'home/recipe_grid.html' %}
