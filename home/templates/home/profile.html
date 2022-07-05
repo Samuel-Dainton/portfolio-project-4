@@ -18,24 +18,26 @@
                 <div class="text-center mt-3">
                     <h4 class="mt-2 mb-0">{{user.username}}</h5>
 
-                    <div class="px-4 mt-1">
-                        {% if user.userprofile.bio == blank %}
-                        <p>{{user.username}} hasn't written anything here yet.</p>
-                        {% else %}
-                        <p>{{user.userprofile.bio}}</p>
-                        {%endif%}
-                    </div>
+                        <div class="px-4 mt-1">
+                            {% if user.userprofile.bio == blank %}
+                            <p>{{user.username}} hasn't written anything here yet.</p>
+                            {% else %}
+                            <p>{{user.userprofile.bio}}</p>
+                            {%endif%}
+                        </div>
 
-                    <div class="text-center mt-5">
-                        {% if page_obj %}
-                        <p class="text-muted">Below you'll find all of {{user.username}}'s submitted recipes.</p>
-                        {%endif%} 
-                    </div>
-                    <div class="text-center mt-1">
-                        {% if request.user == user %}
-                        <a href="{% url 'update-user' %}">Update Profile</a>
-                        {%endif%} 
-                    </div>
+                        <div class="text-center mt-5">
+                            {% if page_obj %}
+                            <p class="text-muted">Below you'll find all of
+                                {%if request.user.username == user.username%}your{%else%}{{user.username}}'s{%endif%}
+                                submitted recipes.</p>
+                            {%endif%}
+                        </div>
+                        <div class="text-center mt-1">
+                            {% if request.user == user %}
+                            <a href="{% url 'update-user' %}">Update Profile</a>
+                            {%endif%}
+                        </div>
                 </div>
             </div>
         </div>

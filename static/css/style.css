@@ -106,9 +106,19 @@ button:hover {
 
 /* Recipe Grid */
 
+.button-margin {
+    margin-right: 0.2rem;
+}
+
 .recipe-thumbnail {
     min-height: 15rem;
     object-fit: fill;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 15vw;
+    object-fit: cover;
 }
 
 .recipe-card-title {
