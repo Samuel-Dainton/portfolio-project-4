@@ -8,9 +8,10 @@
         <div class="col-md-8 text-center">
             <div class="d-inline-flex m-1 topic-button-container">
             <a class="topic-button" href="{% url 'home' %}">All</a>
-        </div>
-        <!--Displays a topic button for each topic-->
-        <div>
+            </div>
+
+            <!--Displays a topic button for each topic-->
+
             {% for topic in topics %}
             <div class="d-inline-flex m-1 topic-button-container">
                 <a class="topic-button" href="{% url 'home' %}?q={{topic.name}}">{{topic.name}}</a>
