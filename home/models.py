@@ -48,10 +48,10 @@ class Recipe(models.Model):
     cook_time = models.PositiveIntegerField(null=True, blank=False)
     difficulty = models.CharField(max_length=50, choices=DIFFICULTY_CHOICES, default='Easy')
     servings = models.CharField(max_length=50)
-    calories = models.CharField(blank=True, null=True, max_length=50)
-    fat = models.CharField(blank=True, null=True, max_length=50)
-    carbs = models.CharField(blank=True, null=True, max_length=50)
-    protein = models.CharField(blank=True, null=True, max_length=50)
+    calories = models.PositiveIntegerField(blank=True, null=True, max_length=50)
+    fat = models.PositiveIntegerField(blank=True, null=True, max_length=50)
+    carbs = models.PositiveIntegerField(blank=True, null=True, max_length=50)
+    protein = models.PositiveIntegerField(blank=True, null=True, max_length=50)
 
     # housekeeping
     created = models.DateTimeField(auto_now_add=True)

@@ -185,6 +185,11 @@ button:hover {
     margin-bottom: 3rem;
 }
 
+.create-recipe-card {
+    border-radius: 2rem;
+    border: 0.2rem solid rgba(49, 175, 180, 0.4);
+}
+
 .error-message {
     background-color: yellow;
 }

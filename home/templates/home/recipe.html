@@ -7,10 +7,10 @@
     {%csrf_token%}
     <input type="hidden" name='recipe_id' value="{{recipe.id}}">
     {% if request.user in recipe.liked.all %}
-    <button class="ui button positive" type="submit">Unlike</button>  
+    <button class="ui button positive" type="submit">Unlike</button>
     {% else %}
     <button class="ui button negative" type="submit">Like</button>
-    {%endif%} 
+    {%endif%}
 
 </form>
 
@@ -37,7 +37,7 @@
                         {% endif %}
                     </div>
 
-                    <div class="mb-4 col-md">
+                    <div class="mb-4 col-md p-0.5 p-sm-3">
 
                         <div>
                             <h3>{{recipe.title}}</h3>
@@ -73,39 +73,41 @@
                             </div>
                         </div>
 
-                        <table class="table">
+                        <table class="table ">
                             <thead>
                                 <tr>
-                                    <th scope="col">Calories</th>
-                                    <th scope="col">Fat</th>
-                                    <th scope="col">Carbs</th>
-                                    <th scope="col">Protein</th>
+                                    <th class="table ">Calories</th>
+                                    <th class="table">Fat</th>
+                                    <th class="table">Carbs</th>
+                                    <th class="table">Protein</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     {% if recipe.calories is not None %}
-                                    <td>{{recipe.calories}}</td>
+                                    <td class="table">{{recipe.calories}}</td>
                                     {% else %}
-                                    <td>Unspecified</td>
+                                    <td class="table">N/A</td>
                                     {% endif %}
                                     {% if recipe.fat is not None %}
-                                    <td>{{recipe.fat}}g</td>
+                                    <td class="table">{{recipe.fat}}g</td>
                                     {% else %}
-                                    <td>Unspecified</td>
+                                    <td class="table">N/A</td>
                                     {% endif %}
                                     {% if recipe.carbs is not None %}
-                                    <td>{{recipe.carbs}}g</td>
+                                    <td class="table">{{recipe.carbs}}g</td>
                                     {% else %}
-                                    <td>Unspecified</td>
+                                    <td class="table">N/A</td>
                                     {% endif %}
                                     {% if recipe.protein is not None %}
-                                    <td>{{recipe.protein}}g</td>
+                                    <td class="table">{{recipe.protein}}g</td>
                                     {% else %}
-                                    <td>Unspecified</td>
+                                    <td class="table">N/A</td>
                                     {% endif %}
                                 </tr>
+                            </tbody>
                         </table>
+
                     </div>
 
                 </div>
