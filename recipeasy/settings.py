@@ -52,8 +52,8 @@ INSTALLED_APPS = [
     'cloudinary',
     'home',
     'ckeditor',
-    "crispy_forms",
-    "crispy_bootstrap5",
+    'crispy_forms',
+    'crispy_bootstrap5',
 ]
 
 SITE_ID = 1

@@ -7,6 +7,7 @@ from ckeditor.fields import RichTextField
 
 from cloudinary.models import CloudinaryField
 
+
 class UserProfile(models.Model):
 
     # relationships
@@ -17,8 +18,6 @@ class UserProfile(models.Model):
 
     # thirdparty    
     avatar = CloudinaryField('image', blank=True, null=True, default="v1656845904/chef_dvaqcl.png")
-
-
 
 
 class Topic(models.Model):
@@ -122,6 +121,7 @@ class Like(models.Model):
     def __str__(self):
         return str(self.recipe)
 
+
 class Comment(models.Model):
 
     # relationships
@@ -144,7 +144,7 @@ class Comment(models.Model):
 # Extends the user model with a userprofile when a new user is created
 @receiver(post_save, sender=User)
 def create_or_update_user_profile(sender, instance, created, **kwargs):
-    
+
     if created:
         UserProfile.objects.create(user=instance)
     instance.userprofile.save()
