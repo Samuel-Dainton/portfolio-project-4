@@ -85,6 +85,10 @@ button:hover {
     border: 2px solid #31AFB4;
 }
 
+.search-icon { 
+    font-size: 120%;
+}
+
 /* Topics */
 
 .topic-button-container {

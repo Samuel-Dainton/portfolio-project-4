@@ -41,9 +41,10 @@ I have also gone over the user stories that I implemented and approached them fr
 ---
 I also asked my peers for their reviews on the website and made changes accordingly.
 
-Their feedback included comments such as
+Some of the feedback that I implemented:
 - The account button in the nav bar looked odd being a different shade to the other two nav buttons.
 - The search icon was a little small.
+- A message should be displayed if a search returns nothing.
 
 <br>
 
