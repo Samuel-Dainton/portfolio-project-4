@@ -23,7 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')),
     path('accounts/', include('allauth.urls')),
-    re_path(r'^', include('app.urls')),
     re_path(r'^', include('home.urls')),    
     re_path(r'^', include('recipeasy.urls')),
     re_path(r'^static/(?P<path>.*)$', serve,
