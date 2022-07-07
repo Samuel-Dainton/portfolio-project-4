@@ -14,7 +14,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     # basics
-    bio = models.TextField(blank=True, null=True)
+    bio = models.CharField(max_length=400, blank=True, null=True)
 
     # thirdparty    
     avatar = CloudinaryField('image', blank=True, null=True, default="v1656845904/chef_dvaqcl.png")
