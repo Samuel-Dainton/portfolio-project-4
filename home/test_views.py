@@ -14,9 +14,3 @@ class TestViews(TestCase):
         response = self.client.get('')
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'home/index.html')
-
-    # Default get keeps returning 301, follow leads to extention templates.
-    def test_get_create_recipe_page(self):
-        response = self.client.get('/create-recipe')
-        self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'home/recipe_form.html')

@@ -57,9 +57,10 @@
                                         </i></button>
                                     {%endif%}
                                     {% else %}
-                                    <a class="" href="{% url 'account_login' %}"><button type="button" class="btn btn-sm btn-primary-outline"><i
-                                        class="fa-regular fa-heart d-flex align-content-center flex-wrap">
-                                    </i></button></a>
+                                    <a class="" href="{% url 'account_login' %}"><button type="button"
+                                            class="btn btn-sm btn-primary-outline"><i
+                                                class="fa-regular fa-heart d-flex align-content-center flex-wrap">
+                                            </i></button></a>
                                     {%endif%}
                                 </form>
                                 <strong>&nbsp;&nbsp;{{recipe.liked.all.count}}
@@ -176,9 +177,11 @@
                     <div class="card card-body">
                         <form action="" method="POST">
                             {% csrf_token %}
-                            <input type="text" name="body"
-                                placeholder="Write your comment here and press 'enter' to submit."
-                                class="comment-input">
+                            <input id="comment-input" type="text" name="body"
+                                placeholder="Write your comment here..."
+                                class="comment-input mb-1"><button type="submit"
+                                class="btn btn-rounded btn-block"
+                                onclick="this.disabled=true;this.form.submit();">Submit</button>
                         </form>
                     </div>
                 </div>
@@ -227,5 +230,12 @@
         </div>
     </div>
 </section>
-
+<script>
+    var el = document.getElementById("comment-input");
+    el.addEventListener("keypress", function (event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+        }
+    });
+</script>
 {% endblock content %}

@@ -69,6 +69,17 @@ I manually tested the project on the Browsers Firefox (version 94), Chrome (vers
 I tested the Performance, Accessibility, Best Practices and SEO of the site using Lighthouse in Chrome Developer Tools.
 
 I also wrote a small number of automated python tests to test my views, forms and models.
+If you wish to run these tests, you will need to swap the databases by swapping the commented out Test database that uses sqlite3 with the postgres database.
+
+    DATABASES = {
+    'default': dj_database_url.parse(os.environ.get('HEROKU_POSTGRESQL_COPPER_URL'))
+    }
+    # DATABASES = {
+    #     'default': {
+    #         'ENGINE': 'django.db.backends.sqlite3',
+    #         'NAME': BASE_DIR / 'db.sqlite3',
+    #     }
+    # }
 
 ## **Validation**
 ___
