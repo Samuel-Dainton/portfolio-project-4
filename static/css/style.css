@@ -152,6 +152,11 @@ button:hover {
     --_p: 100%
 }
 
+.blank-search {
+    margin: auto;
+    width: 100%;
+    text-align: center;
+}
 
 
 

@@ -4,6 +4,8 @@
             <!--Recipe Grid-->
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
                 <!--page_obj depends on the view, index uses all recipes, profile uses the users recipes-->
+
+                {%if page_obj%}
                 {% for recipe in page_obj %}
                 <div class="col">
                     <div class="card recipe-card shadow-sm d-flex align-items-stretch align-self-stretch">
@@ -42,6 +44,11 @@
                     </div>
                 </div>
                 {% endfor %}
+                {%else%}
+                <div class="blank-search">
+                    <h2>Sorry, your search did not return any results.</h2>
+                    {%endif%}
+                </div>
             </div>
             <!--Pagination-->
             <div class="row mt-3">
