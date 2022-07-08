@@ -5,15 +5,18 @@ from django.contrib.auth.models import User
 from django_summernote.widgets import SummernoteWidget
 
 class RecipeForm(forms.ModelForm):
-    
-    ingredient = forms.CharField(widget=SummernoteWidget())
-    introduction = forms.CharField(widget=SummernoteWidget())
-    method = forms.CharField(widget=SummernoteWidget())
+
+
     class Meta: 
         model = Recipe
         # Can use ['name', 'method'...] to select specific values.
         fields = '__all__'
         exclude = ['author']
+        widgets = {
+            'ingredient': SummernoteWidget(),
+            'introduction': SummernoteWidget(),
+            'method': SummernoteWidget(),
+        }
 
     topic = forms.ModelMultipleChoiceField(
         queryset=Topic.objects.all(),
