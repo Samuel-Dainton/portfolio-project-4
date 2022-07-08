@@ -178,4 +178,4 @@ def updateUser(request):
     return render(request, 'home/update_user.html', context)
 
 def notFound(request, exception):
-    return render(request, not_found.html)
+    return render(request, 'home/not_found.html')
