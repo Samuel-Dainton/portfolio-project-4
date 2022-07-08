@@ -12,7 +12,6 @@ This is my 4th Milestone Project on my course with Code Institue. It is meant to
 This recipe website allows users to share their favorite recipes with a simple and straightforward recipe form, where much of the instructions and ingredients can be styled thanks to the use of CKEditor. Users can like recipes to show their appreciation, leave comments on recipes they appreciate and build a small profile page to showcase all their submitted recipes for other users to view.
 
 
-
 ## **STRATEGY**
 
 ### **Project Goals**
