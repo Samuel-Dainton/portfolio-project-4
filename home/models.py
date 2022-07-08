@@ -63,7 +63,7 @@ class Recipe(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     # thirdparty
-    introduction = models.TextField(blank=True, null=True, default="The Summernote Editor allows you to add some styling to your recipe.<br>You can add pictures, links or even paste the formatting of other recipes directly into your code.<br>Also, for an introduction you could also choose to include pairing suggestions.")
+    introduction = models.TextField(blank=True, null=True, default="The Summernote Editor allows you to add some styling to your recipe.<br>You can add pictures, links or even paste the formatting of other recipes directly in.<br>The introduction is a great place to describe your recipe or include pairing suggestions.")
     ingredient = models.TextField(blank=False, null=True, default="<ul><li>Be sure to make good use of the bullet point button</li><li>So users can easily read each of your ingredients line by line</li><li><br></li></ul>")
     method = models.TextField(blank=False, null=True, default="<ol><li>Think about how a reader should approach the recipe step by step.</li><li> Try to break it up into smaller steps to make things easier to follow.</li><li><br></li></ol>")
     image = CloudinaryField('image', null=True, blank=True, default='placeholder')    

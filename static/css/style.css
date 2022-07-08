@@ -318,3 +318,9 @@ body {
 
 
 /* Media Queries */
+
+@media (max-width: 575px) {
+    .carousel-container {
+        margin-top: 6rem;
+    }
+}
