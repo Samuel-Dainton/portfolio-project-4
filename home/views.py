@@ -176,3 +176,6 @@ def updateUser(request):
 
     context = {'form': form}
     return render(request, 'home/update_user.html', context)
+
+def notFound(request, exception):
+    return render(request, not_found.html)

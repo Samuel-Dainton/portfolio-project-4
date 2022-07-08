@@ -14,3 +14,5 @@ urlpatterns = [
     path('update-user/', views.updateUser, name='update-user'),
     path('like/', views.likeRecipe, name='like-recipe')
 ]
+
+handler404 = "home.views.notFound"
