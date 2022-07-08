@@ -63,15 +63,15 @@ button:hover {
 }
 
 .carousel-image-1 {
-    background: url("media/food-spread.png") no-repeat;
+    background: url("https://res.cloudinary.com/samuel-dainton/image/upload/v1657269180/media/food-spread.3353eb88eee2.png") no-repeat;
 }
 
 .carousel-image-2 {
-    background: url("media/crying-tiger-salad.png") no-repeat;
+    background: url("https://res.cloudinary.com/samuel-dainton/image/upload/v1657269181/media/crying-tiger-salad.f9d09c3ea599.png") no-repeat;
 }
 
 .carousel-image-3 {
-    background: url("media/baker.png") no-repeat;
+    background: url("https://res.cloudinary.com/samuel-dainton/image/upload/v1657269182/media/baker.78f89dbf5dd3.png") no-repeat;
 }
 
 /* Search Bar */
