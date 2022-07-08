@@ -2,12 +2,11 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.http import HttpResponse
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
-from .models import Recipe, Comment, Allergy, UserProfile, Like
+from .models import Recipe, Comment, Like
 from .forms import RecipeForm, UserForm
 from django.contrib.auth.models import User
 
 from django.core.paginator import Paginator
-from django.shortcuts import render
 
 def topic(request):
     return render(request, 'home/browse.html')
