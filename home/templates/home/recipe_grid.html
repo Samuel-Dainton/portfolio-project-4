@@ -13,7 +13,7 @@
                         <div class="card">
                             <a href="/recipe/{{recipe.title}}">
                                 {% if "placeholder" in recipe.image.url %}
-                                <img class="recipe-thumbnail card-img-top"
+                                <img class="recipe-thumbnail card-img-top" alt="a picture of the recipe as described by the title"
                                     src="https://res.cloudinary.com/samuel-dainton/image/upload/v1656760672/gikczyzwxu8x8rtf9g3h.jpg"
                                     width="100%">
                                 {% else %}
@@ -56,8 +56,8 @@
                     <div class="pagination">
                         <span class="step-links">
                             {% if page_obj.has_previous %}
-                            <a href="?page=1">&laquo; First |</a>
-                            <a href="?page={{ page_obj.previous_page_number }}">Previous |</a>
+                            <a class="pagination-button" href="?page=1">&laquo; First |</a>
+                            <a class="pagination-button" href="?page={{ page_obj.previous_page_number }}">Previous |</a>
                             {% endif %}
 
                             <span class="current">
@@ -65,8 +65,8 @@
                             </span>
 
                             {% if page_obj.has_next %}
-                            <a href="?page={{ page_obj.next_page_number }}">| Next</a>
-                            <a href="?page={{ page_obj.paginator.num_pages }}">| Last &raquo;</a>
+                            <a class="pagination-button" href="?page={{ page_obj.next_page_number }}">| Next</a>
+                            <a class="pagination-button" href="?page={{ page_obj.paginator.num_pages }}">| Last &raquo;</a>
                             {% endif %}
                         </span>
                     </div>

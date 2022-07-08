@@ -162,6 +162,14 @@ button:hover {
     text-align: center;
 }
 
+.pagination {
+    font-size: 130%;
+}
+
+.pagination-button {
+    color: black;
+}
+
 
 
 /* Recipe Detail Page */

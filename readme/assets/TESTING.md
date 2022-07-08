@@ -45,6 +45,7 @@ Some of the feedback that I implemented:
 - The account button in the nav bar looked odd being a different shade to the other two nav buttons.
 - The search icon was a little small.
 - A message should be displayed if a search returns nothing.
+- Navbar was a bit in the way when reading recipe instructions on smaller devices.
 
 <br>
 
