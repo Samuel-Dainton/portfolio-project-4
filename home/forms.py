@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django_summernote.widgets import SummernoteWidget
 
 class RecipeForm(forms.ModelForm):
+    
     ingredient = forms.CharField(widget=SummernoteWidget())
     introduction = forms.CharField(widget=SummernoteWidget())
     method = forms.CharField(widget=SummernoteWidget())
