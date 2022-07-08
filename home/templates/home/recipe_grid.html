@@ -13,11 +13,11 @@
                         <div class="card">
                             <a href="/recipe/{{recipe.title}}">
                                 {% if "placeholder" in recipe.image.url %}
-                                <img class="recipe-thumbnail card-img-top" alt="a picture of the recipe as described by the title"
+                                <img class="recipe-thumbnail card-img-top" alt="a placeholder image for the recipe featuring a table of ingredients"
                                     src="https://res.cloudinary.com/samuel-dainton/image/upload/v1656760672/gikczyzwxu8x8rtf9g3h.jpg"
                                     width="100%">
                                 {% else %}
-                                <img class="recipe-thumbnail card-img-top" src=" {{ recipe.image.url }}" width="100%">
+                                <img class="recipe-thumbnail card-img-top" alt="a picture of the recipe as described by the title" src=" {{ recipe.image.url }}" width="100%">
                                 {% endif %}
                             </a>
                         </div>
