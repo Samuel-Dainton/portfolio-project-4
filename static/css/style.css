@@ -39,14 +39,14 @@ button:hover {
 .navbar-brand {
     background: url("https://res.cloudinary.com/samuel-dainton/image/upload/v1657273626/media/logo_small_k2mexy.png") no-repeat;
     height: 5rem;
-    width: 16.5rem;
+    width: 12rem;
 }
 
 /* Carousel */
 
 .carousel-container {
     background-color: rgba(49, 175, 180, 0.4);
-    margin-top: 4rem;
+    margin-top: 8rem;
 }
 
 .carousel-button:hover {
@@ -73,6 +73,7 @@ button:hover {
 .carousel-image-3 {
     background: url("https://res.cloudinary.com/samuel-dainton/image/upload/v1657269182/media/baker.78f89dbf5dd3.png") no-repeat;
 }
+
 
 /* Search Bar */
 
@@ -317,9 +318,3 @@ body {
 
 
 /* Media Queries */
-
-@media (max-width: 575px) {
-    .carousel-container {
-        margin-top: 0px;
-    }
-}
