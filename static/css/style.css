@@ -37,7 +37,7 @@ button:hover {
 }
 
 .navbar-brand {
-    background: url("../../media/logo_small.png") no-repeat;
+    background: url("media/logo_small.png") no-repeat;
     height: 5rem;
     width: 16.5rem;
 }
@@ -63,15 +63,15 @@ button:hover {
 }
 
 .carousel-image-1 {
-    background: url("../../media/food-spread.png") no-repeat;
+    background: url("media/food-spread.png") no-repeat;
 }
 
 .carousel-image-2 {
-    background: url("../../media/crying-tiger-salad.png") no-repeat;
+    background: url("media/crying-tiger-salad.png") no-repeat;
 }
 
 .carousel-image-3 {
-    background: url("../../media/baker.png") no-repeat;
+    background: url("media/baker.png") no-repeat;
 }
 
 /* Search Bar */
