@@ -63,9 +63,9 @@ class Recipe(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     # thirdparty
-    introduction = RichTextField(blank=True, null=True)
-    ingredient = RichTextField(blank=False, null=True)
-    method = RichTextField(blank=False, null=True)
+    introduction = models.TextField(blank=True, null=True, default='ici')
+    ingredient = models.TextField(blank=False, null=True, default='ici')
+    method = models.TextField(blank=False, null=True, default='ici')
     image = CloudinaryField('image', null=True, blank=True, default='placeholder')    
 
     """

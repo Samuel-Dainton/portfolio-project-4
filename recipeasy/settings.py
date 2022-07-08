@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'crispy_forms',
     'crispy_bootstrap5',
+    'django_summernote'
 ]
 
 SITE_ID = 1
