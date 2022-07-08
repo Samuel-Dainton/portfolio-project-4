@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.http import HttpResponse
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
@@ -43,7 +43,7 @@ def home(request):
 
 def userProfile(request, pk):
 
-    user = User.objects.get(id=pk)
+    user = get_object_or_404(User, id=pk)
     recipes = user.recipe_set.all()
 
     paginator = Paginator(recipes, 12)
@@ -56,7 +56,7 @@ def userProfile(request, pk):
 
 def recipe(request, title):
 
-    recipe = Recipe.objects.get(title=title)
+    recipe = get_object_or_404(Recipe, title=title)
     comments = recipe.comment_set.all().order_by('-created')
     
     # Comment post method
@@ -114,7 +114,7 @@ def createRecipe(request):
 @login_required()
 def updateRecipe(request, title):
 
-    recipe = Recipe.objects.get(title=title)
+    recipe = get_object_or_404(Recipe, title=title)
     form = RecipeForm(instance=recipe)
     
     # Checks that user is the author incase unothorised user accesses the page
@@ -134,7 +134,7 @@ def updateRecipe(request, title):
 @login_required()
 def deleteRecipe(request, title):
 
-    recipe = Recipe.objects.get(title=title)
+    recipe = get_object_or_404(Recipe, title=title)
 
     if request.user != recipe.author:
         return HttpResponse('This is not your recipe to delete.')
@@ -147,8 +147,8 @@ def deleteRecipe(request, title):
 @login_required()
 def deleteComment(request, pk, recipe):
     
-    comment = Comment.objects.get(id=pk)
-    recipe_obj = Recipe.objects.get(title=recipe)
+    comment = get_object_or_404(Comment, id=pk)
+    recipe_obj = get_object_or_404(Recipe, title=recipe)
 
     if request.user != comment.user:
         return HttpResponse('This is not your comment to delete.')
