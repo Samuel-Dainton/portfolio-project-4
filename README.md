@@ -221,7 +221,7 @@ If you find any security flaws or issues please feel open to contact me, I do ho
 
 ## **TESTING**
 
-View the [Testing Document](readme/assets/testing.md)
+View the [Testing Document](readme/assets/TESTING.md)
 
 ## **BUGS AND ISSUES**
 
@@ -242,6 +242,9 @@ This is a table of the major bugs and issues that I experienced when building th
 | 11 | Database Maintainance | Heroku changed my database to a COPPER_URL | Added new copper url config vars to env.py and settings.py |
 | 12 | Model Forms | Testing the ManyToMany fields would return 'not a valid option' | setUp lists for the many to many fields and used list item values instead of their names.|
 | 13 | Recipe Form Submit | Clicking the submit button on a recipe form submits the recipe multiple times | Added 'onclick="this.disabled=true' to the submit button |
+| 14 | Static Files | On deployment, static files were not loading. Heroku was saying that the files in the cloudinary upload were too large | Moved static images to cloudinary and removed the static/images folder |
+| 15 | CKEditor | CKEditor fields on the create recipe page were not loading, the errors suggested that the pathing for static files was wrong. | I think I would have had to learn about dynamic SEO suffixes which is a bit out of my capabilities at the moment, so I swapped to using Summernote instead.|
+| 16 | Enter Button Comment | Pressing Enter multiple times when writing a comment would submit multiple of the same coment. | Disabled the default action and added a submit button instead, also disabled multiple entried with the button using solution #13 | 
 
 
 ## **DEPLOYMENT**
