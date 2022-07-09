@@ -11,6 +11,35 @@ This is my 4th Milestone Project on my course with Code Institue. It is meant to
 
 This recipe website allows users to share their favorite recipes with a simple and straightforward recipe form, where much of the instructions and ingredients can be styled thanks to the use of CKEditor. Users can like recipes to show their appreciation, leave comments on recipes they appreciate and build a small profile page to showcase all their submitted recipes for other users to view.
 
+![Responsive](/readme/assets/responsive.png)
+
+## **Contents**
+
+<details>
+<summary>
+Table of Contents - Click to Expand
+</summary>
+
+- [UX Design](#strategy)
+  - [User Stories](#user-stories)
+  - [Features and Scope Planning](#scope)
+  - [Structure](#structure)
+  - [Wireframes](#wireframes)
+  - [Colors](#color-scheme)
+  - [Typography](#typography)
+- [Features Implemented](#features)
+  - [Defensive Programming](#-defensive-programming)
+  - [Future Releases](#Features-for-Future-Releases)
+- [Testing](#testing)
+  - [Bugs & Issues](#bugs-and-issues)
+  - [Validation Results](#validation-results)
+- [Deployment](#deployment)
+- [Technology Used](#technology-used)
+- [Credits](#credits)
+
+</details>
+
+<br>
 
 ## **STRATEGY**
 
@@ -56,8 +85,9 @@ I did get quite far with these functions and hope to revisit htmx again in the f
 
 
 ## **STRUCTURE**
+---
 
-## Database Schema
+### **Database Schema**
 
 To deliver the required functionality, I have used a relational database to store and access any associated data.
 
@@ -102,11 +132,11 @@ Through some trial and error, my final database looks as shown below.
 [Link to all the Wireframe designs for this project](readme/assets/wireframes/)
 
 
-### **Design Decisions**
+## **Design Decisions**
 
 Bootstrap provides a clean user-friendly appearance to the website which is easy to customise for the situation using its extensive supporting documentation and was used througout the project.
 
-**Colour Scheme**
+### **Color Scheme**
 
 I designed the colour scheme for this website from the logo that I made.
 
@@ -117,12 +147,13 @@ The colour scheme is high contrast and easily viewable. The color turqoise is sa
 I also used a slight hint of purple on the recipe cards just to give the user a little more feedback as they navigate the recipes.
 
 
-**Typography**
+### **Typography**
 
 To give the website a clean and professional look, I chose to use Alegreya and Gentium Book Plus from google fonts.
 
 
 ## **FEATURES**
+---
 
 This is a full, page by page, breakdown of all the features & elements that have been implemented for the first production release.
 

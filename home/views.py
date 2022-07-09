@@ -14,7 +14,7 @@ def topic(request):
 
 
 def home(request):
-    
+
     # Search Function
     q = request.GET.get('q') if request.GET.get('q') is not None else ''
     if q:

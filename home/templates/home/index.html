@@ -3,7 +3,7 @@
 {% block content %}
 
 <!--Carousel-->
-<section class="container mx-auto">
+<section class="carousel-section container mx-auto">
     <div class="row p-3 p-md-5 text-center carousel-container">
         <div class="col-12 mx-auto">
             <div id="carouselExampleCaptions" class="carousel carousel-fade slide" data-ride="carousel">
@@ -17,7 +17,7 @@
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item carousel-image-1 active">
-                        <div class="d-block w-100" alt="..."></div>
+                        <div class="d-block w-100"></div>
                         <div class="carousel-caption">
                             <h5>Welcome to Recipeasy!</h5>
                             <p>Share and browse recipies with other users to inspire and develop your cooking
@@ -57,10 +57,9 @@
 </section>
 
 <!--Search Bar-->
-<section>
+<section class="searchbar-section">
     <div class="container mt-5 mb-2">
         <div class="row height d-flex justify-content-center align-items-center">
-
             <div class="col-md-8">
                 <h4 class="text-center">Search our collection of {{recipe_count}} recipes!</h4>
                 <form method="GET" class="d-flex justify-content-center" action="{% url 'home' %}">

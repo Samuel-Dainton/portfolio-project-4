@@ -70,6 +70,8 @@ I manually tested the project on the Browsers Firefox (version 94), Chrome (vers
 
 I tested the Performance, Accessibility, Best Practices and SEO of the site using Lighthouse in Chrome Developer Tools.
 
+![Lighthouse](/readme/assets/lighthouse.png)
+
 I also wrote a small number of automated python tests to test my views, forms and models.
 If you wish to run these tests, you will need to swap the databases by swapping the commented out Test database that uses sqlite3 with the postgres database.
 
@@ -86,15 +88,25 @@ If you wish to run these tests, you will need to swap the databases by swapping 
 ## **Validation**
 ___
 ### **HTML**
-I used the W3c 
+I used the W3C Validator to check my HTML
+
+There are a number Illegal Character errors (spaces) because of the way that the recipe cards are generated and some sections and divs that it believes are unclosed due to using {% include ... %} in my code.
+
+There are also some errors where I have left alt attributes for background images.
+
+Otherwise, the majority of the HTML is valid and no major issues for concern are ever raised.
 
 
 ### **CSS**
+All CSS was ran through the W3C jigsaw validator. 
 
-
+Errors returned were from third party code. The errors were checked and didn't appear to have a negative effect on the performance of the site.
+![Jigsaw Validator](/readme/assets/W3C-CSS.png)
 
 ### **JavaScript**
 
-
+JSHint was used to validate JavaScript, all code passed.
 
 ### **Python**
+
+PYLint and Pep8 were used to validate Python code. There are two trailing white spaces that I can't seem to get rid of but otherwise all code passes.

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<section>
+<section class="recipe-detail-section">
     <div class="container shadow py-4 mt-3 recipe-intro-container">
         <!--Edit and Delete buttons if recipe belongs to the request user-->
         {% if request.user == recipe.author %}
@@ -139,7 +139,7 @@
     </div>
 </section>
 <!--Second card for ingredients and method-->
-<section>
+<section class="recipe-instructions-section">
     <div class="bg-light container shadow py-4 mt-3">
         <div class="row align-items-center">
             <div class="col-lg-6">
@@ -158,7 +158,7 @@
     </div>
 </section>
 <!--Commen section-->
-<section>
+<section class="comments-section">
     <div class="container mt-5 mb-5">
         <div class="row d-flex justify-content-center">
             <div class="col-md-12">

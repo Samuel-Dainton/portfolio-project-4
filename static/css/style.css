@@ -130,6 +130,7 @@ button:hover {
 .recipe-thumbnail {
     min-height: 15rem;
     object-fit: fill;
+    width: 100%;
 }
 
 .card-img-top {

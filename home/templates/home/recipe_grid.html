@@ -1,4 +1,4 @@
-<section>
+<section class="recipe-grid-section">
     <div class="album py-5 bg-light">
         <div class="container">
             <!--Recipe Grid-->
@@ -13,11 +13,13 @@
                         <div class="card">
                             <a href="/recipe/{{recipe.title}}">
                                 {% if "placeholder" in recipe.image.url %}
-                                <img class="recipe-thumbnail card-img-top" alt="a placeholder image for the recipe featuring a table of ingredients"
-                                    src="https://res.cloudinary.com/samuel-dainton/image/upload/v1656760672/gikczyzwxu8x8rtf9g3h.jpg"
-                                    width="100%">
+                                <img class="recipe-thumbnail card-img-top"
+                                    alt="a placeholder image for the recipe featuring a table of ingredients"
+                                    src="https://res.cloudinary.com/samuel-dainton/image/upload/v1656760672/gikczyzwxu8x8rtf9g3h.jpg">
                                 {% else %}
-                                <img class="recipe-thumbnail card-img-top" alt="a picture of the recipe as described by the title" src=" {{ recipe.image.url }}" width="100%">
+                                <img class="recipe-thumbnail card-img-top"
+                                    alt="a picture of the recipe as described by the title"
+                                    src=" {{ recipe.image.url }}">
                                 {% endif %}
                             </a>
                         </div>
@@ -66,7 +68,8 @@
 
                             {% if page_obj.has_next %}
                             <a class="pagination-button" href="?page={{ page_obj.next_page_number }}">| Next</a>
-                            <a class="pagination-button" href="?page={{ page_obj.paginator.num_pages }}">| Last &raquo;</a>
+                            <a class="pagination-button" href="?page={{ page_obj.paginator.num_pages }}">| Last
+                                &raquo;</a>
                             {% endif %}
                         </span>
                     </div>
