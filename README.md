@@ -1,4 +1,4 @@
-# **Recipeasy - Recipe Sharing Social Platform**
+# **Recipeasy - A Recipe Sharing Social Platform**
 
 This project is designed to offer a simple and fluid website for cooks of all levels to share their recipe ideas with others, find new inspiring recipes and share their thoughts.
 
@@ -20,7 +20,7 @@ This recipe website allows users to share their favorite recipes with a simple a
 Table of Contents - Click to Expand
 </summary>
 
-- [UX Design](#strategy)
+- [Strategy](#strategy)
   - [User Stories](#user-stories)
   - [Features and Scope Planning](#scope)
   - [Structure](#structure)
@@ -42,7 +42,7 @@ Table of Contents - Click to Expand
 <br>
 
 ## **STRATEGY**
-
+---
 ### **Project Goals**
 
 - Develop a recipe website that allows users to share their own recipes and browse or search for new and inspiring recipes to expand their cooking knowledge
@@ -253,7 +253,7 @@ If you find any security flaws or issues please feel open to contact me, I do ho
 
 
 ## **TESTING**
-
+---
 View the [Testing Document](readme/assets/TESTING.md)
 
 ## **BUGS AND ISSUES**
@@ -281,7 +281,7 @@ This is a table of the major bugs and issues that I experienced when building th
 
 
 ## **DEPLOYMENT**
-
+---
 In order to deploy the project yourself both for the development and live versions of this project, images have been hosted using a cloudinary API and the database is stored through Heroku PostgreSQL. Changes will need to be made if you intend to use other hosting services.
 
 ### Local Deployment
@@ -338,7 +338,7 @@ When deploying a live version of the site, remember to change the debug mode to 
 
 
 ## **TECHNOLOGY USED**
-
+---
 <details>
 <summary> Languages and Libraries</summary>
 
@@ -380,9 +380,10 @@ When deploying a live version of the site, remember to change the debug mode to 
 - [Pep8](http://pep8online.com/)
 </details>
 
+<br>
 
 ## **CREDITS**
-
+---
 - Much of the html was built, extending off of bootstrap [starter tempaltes](https://getbootstrap.com/docs/4.0/examples/). 
 - I followed a guide by Alice Campkin to style my ManyToMany fields into radio buttons found [here](https://medium.com/swlh/django-forms-for-many-to-many-fields-d977dec4b024)
 - A lot of my learning and understanding of the backend was guided by videos from [Coding Entrepreneurs](https://www.youtube.com/c/CodingEntrepreneurs) and [Dennis Ivy](https://www.youtube.com/c/dennisivy)

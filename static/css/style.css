@@ -16,14 +16,6 @@ a {
     text-decoration: none;
 }
 
-.nav-item {
-    transition: 0.5s;
-}
-
-.nav-item:hover {
-    background-color: rgba(49, 175, 180, 0.4);
-}
-
 .btn {
     border: 1px solid rgba(49, 175, 180, 0.4);
 }
@@ -36,6 +28,24 @@ button:hover {
     background-color: rgba(49, 175, 180, 0.4);
 }
 
+/* Navbar */
+
+.nav-item {
+    transition: 0.5s;
+}
+
+.nav-item:hover {
+    background-color: rgba(49, 175, 180, 0.4);
+}
+
+#nav-margin {
+    margin-top: 8rem;
+}
+
+.nav-collapse {
+    margin-top: 0rem!important;
+}
+
 .navbar-brand {
     background: url("https://res.cloudinary.com/samuel-dainton/image/upload/v1657273626/media/logo_small_k2mexy.png") no-repeat;
     height: 5rem;
@@ -46,7 +56,6 @@ button:hover {
 
 .carousel-container {
     background-color: rgba(49, 175, 180, 0.4);
-    margin-top: 8rem;
 }
 
 .carousel-button:hover {
@@ -321,7 +330,7 @@ body {
 /* Media Queries */
 
 @media (max-width: 575px) {
-    .carousel-container {
+    #nav-margin {
         margin-top: 6rem;
     }
 }
