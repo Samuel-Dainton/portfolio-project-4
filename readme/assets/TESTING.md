@@ -85,3 +85,16 @@ If you wish to run these tests, you will need to swap the databases by swapping 
 
 ## **Validation**
 ___
+### **HTML**
+I used the W3c 
+
+
+### **CSS**
+
+
+
+### **JavaScript**
+
+
+
+### **Python**
