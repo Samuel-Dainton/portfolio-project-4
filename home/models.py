@@ -16,8 +16,8 @@ class UserProfile(models.Model):
     # basics
     bio = models.CharField(max_length=400, blank=True, null=True)
 
-    # thirdparty    
-    avatar = CloudinaryField('image', blank=True, null=True, default="v1656845904/chef_dvaqcl.png")
+    # thirdparty
+    # avatar = CloudinaryField('image', blank=True, null=True, default="v1656845904/chef_dvaqcl.png")
 
 
 class Topic(models.Model):
@@ -37,9 +37,9 @@ class Allergy(models.Model):
 class Recipe(models.Model):
 
     DIFFICULTY_CHOICES = (
-        ('Easy','Easy'),
+        ('Easy', 'Easy'),
         ('Moderate', 'Moderate'),
-        ('Advanced','Advanced'),
+        ('Advanced', 'Advanced'),
     )
 
     # relationships
@@ -47,7 +47,7 @@ class Recipe(models.Model):
     topic = models.ManyToManyField(Topic,)
     allergy_info = models.ManyToManyField(Allergy,)
     liked = models.ManyToManyField(User, default=None, blank=True, related_name='liked')
-    
+
     # basics
     title = models.CharField(max_length=200, unique=True)
     prep_time = models.PositiveIntegerField(null=True, blank=False)
@@ -66,7 +66,7 @@ class Recipe(models.Model):
     introduction = models.TextField(blank=True, null=True, default="The Summernote Editor allows you to add some styling to your recipe.<br>You can add pictures, links or even paste the formatting of other recipes directly in.<br>The introduction is a great place to describe your recipe or include pairing suggestions.")
     ingredient = models.TextField(blank=False, null=True, default="<ul><li>Be sure to make good use of the bullet point button</li><li>So users can easily read each of your ingredients line by line</li><li><br></li></ul>")
     method = models.TextField(blank=False, null=True, default="<ol><li>Think about how a reader should approach the recipe step by step.</li><li> Try to break it up into smaller steps to make things easier to follow.</li><li><br></li></ol>")
-    image = CloudinaryField('image', null=True, blank=True, default='placeholder')    
+    image = CloudinaryField('image', null=True, blank=True, default='placeholder')
 
     """
     Next three functions are to convert minutes from recipe forms into hours and minutes.
@@ -78,21 +78,21 @@ class Recipe(models.Model):
         minutes = (self.prep_time + self.cook_time) % 60
         time = "{}hr {}min".format(hours, minutes)
         return time
-    
+
     @property
     def hours_prep_time(self):
         hours = self.prep_time // 60
         minutes = self.prep_time % 60
         hours_prep_time = "{}hr {}min".format(hours, minutes)
         return hours_prep_time
-    
+
     @property
     def hours_cook_time(self):
         hours = self.cook_time // 60
         minutes = self.cook_time % 60
         hours_cook_time = "{}hr {}min".format(hours, minutes)
         return hours_cook_time
-   
+
     @property
     def num_likes(self):
         return self.liked.all().count()
@@ -107,14 +107,14 @@ class Recipe(models.Model):
 class Like(models.Model):
 
     LIKE_CHOICES = (
-    ('Like', 'Like'),
-    ('Unlike', 'Unlike')
+        ('Like', 'Like'),
+        ('Unlike', 'Unlike')
     )
 
     # relationships
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
-    
+
     # basics
     value = models.CharField(choices=LIKE_CHOICES, default='Like', max_length=10)
 

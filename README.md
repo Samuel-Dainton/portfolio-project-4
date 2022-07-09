@@ -135,6 +135,7 @@ This is a full, page by page, breakdown of all the features & elements that have
     - "Login" and "Register" if user is not authenticated, "Logout" and "Update Profile" if user is logged in.
     - "Profile" link which otherwise links user to login page if not authenticated
 - "Create Recipe" - Links to the create recipe form but otherwise directs user to login if not authenticated.
+- The nav bar is fixed on most pages but on a recipe page it is sticky so that it disappears when viewing the recipe. This allows users on smaller devices to view more text at once without the nav bar being in the way.
 
 **Footer**
 - Links to socials for promotion
@@ -142,7 +143,7 @@ This is a full, page by page, breakdown of all the features & elements that have
 
 **Home Page**
 - Carousel - The carousel displays 3 rotating images that welcome the user and direct them to interact with different areas of the site. This can be used later to promote new features of the site as they are added
-- Search Bar and Catagories - Filters the list of recipes displayed on the home page to the users inputs
+- Search Bar and Catagories - Filters the list of recipes displayed on the home page to the users inputs. I hope to improve these in the future features once I learn Ajax so that the page stays where it is when using these features.
 - Recipe Grid - Displays basic info of the recipes in the order of most recently created. If the user is the author of the recipe it instead shows buttons that the author can use to either update or delete their recipe
 - The recipe grid uses pagination, so if more than 12 recipes are listed then buttons will appear to seperate the next set of 12 recipes to another page
 
@@ -211,6 +212,7 @@ If you find any security flaws or issues please feel open to contact me, I do ho
 
 ### **Features for Future Releases**
 
+- Ajax implementation so page stays in place when searching/browsing
 - Units and servings calculations
 - Filter recipes based on the users likes
 - Sort recipes by their number of likes
@@ -340,21 +342,20 @@ When deploying a live version of the site, remember to change the debug mode to 
 
 - [JavaScript Validator](https://beautifytools.com/javascript-validator.php) - Validating JS code
 - [Am I Responsive?](http://ami.responsivedesign.is/) - Webpage Breakpoint visualizer and image generator
-- [Black](https://black.readthedocs.io/en/stable/)- Code Formatter
 - [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/)
-- [Browser Stack Responsive Design Tester](https://www.browserstack.com/responsive)
-- [Media Genesis RESPONSIVE WEB DESIGN CHECKER](https://responsivedesignchecker.com/)
 - [Chrome Dev Tools](https://developer.chrome.com/docs/devtools/)
 - [Lighthouse](https://developers.google.com/web/tools/lighthouse)
 - [pylint](https://pylint.org/)
+- [Pep8](http://pep8online.com/)
 </details>
 
 
 ## **CREDITS**
 
-- Much of the html was built, extending off of bootstrap ![starter tempaltes](https://getbootstrap.com/docs/4.0/examples/). 
-- I followed a guide by Alice Campkin to style my ManyToMany fields into radio buttons found ![here](https://medium.com/swlh/django-forms-for-many-to-many-fields-d977dec4b024)
-- A lot of my learning and understanding of the backend was guided by videos from ![Coding Entrepreneurs](https://www.youtube.com/c/CodingEntrepreneurs) and ![Dennis Ivy](https://www.youtube.com/c/dennisivy)
+- Much of the html was built, extending off of bootstrap [starter tempaltes](https://getbootstrap.com/docs/4.0/examples/). 
+- I followed a guide by Alice Campkin to style my ManyToMany fields into radio buttons found [here](https://medium.com/swlh/django-forms-for-many-to-many-fields-d977dec4b024)
+- A lot of my learning and understanding of the backend was guided by videos from [Coding Entrepreneurs](https://www.youtube.com/c/CodingEntrepreneurs) and [Dennis Ivy](https://www.youtube.com/c/dennisivy)
+- The code for the on hover css with the recipe cards was taken from [Cool CSS](https://css-tricks.com/)
 
 
 ### **Resources**

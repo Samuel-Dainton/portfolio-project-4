@@ -8,19 +8,21 @@ from django.contrib.auth.models import User
 
 from django.core.paginator import Paginator
 
+
 def topic(request):
     return render(request, 'home/browse.html')
+
 
 def home(request):
     
     # Search Function
-    q = request.GET.get('q') if request.GET.get('q') != None else ''
+    q = request.GET.get('q') if request.GET.get('q') is not None else ''
     if q:
         recipe_list = Recipe.objects.filter(
             Q(topic__name__icontains=q) |
             Q(title__icontains=q)  |
             Q(ingredient__icontains=q)
-    )
+        )
     else:
         recipe_list = Recipe.objects.all()
 
@@ -57,7 +59,7 @@ def recipe(request, title):
 
     recipe = get_object_or_404(Recipe, title=title)
     comments = recipe.comment_set.all().order_by('-created')
-    
+
     # Comment post method
     if request.method == 'POST':
         comment = Comment.objects.create(
@@ -69,8 +71,9 @@ def recipe(request, title):
 
     liked_list = recipe.liked.all()
 
-    context = {'recipe': recipe, 'comments':comments, 'liked_list': liked_list}
+    context = {'recipe': recipe, 'comments': comments, 'liked_list': liked_list}
     return render(request, 'home/recipe.html', context)
+
 
 def likeRecipe(request):
 
@@ -95,11 +98,12 @@ def likeRecipe(request):
 
     return redirect(reverse('recipe', kwargs={'title':recipe_obj}))
 
+
 @login_required
 def createRecipe(request):
 
     form = RecipeForm()
-    
+
     if request.method == 'POST':
         form = RecipeForm(request.POST, request.FILES)
         if form.is_valid():
@@ -110,12 +114,13 @@ def createRecipe(request):
     context = {'form': form}
     return render(request, 'home/recipe_form.html', context)
 
+
 @login_required()
 def updateRecipe(request, title):
 
     recipe = get_object_or_404(Recipe, title=title)
     form = RecipeForm(instance=recipe)
-    
+
     # Checks that user is the author incase unothorised user accesses the page
     if request.user != recipe.author:
         return HttpResponse('This is not your recipe to edit.')
@@ -143,9 +148,10 @@ def deleteRecipe(request, title):
         return redirect('home')
     return render(request, 'home/delete.html', {'selected_object': recipe})
 
+
 @login_required()
 def deleteComment(request, pk, recipe):
-    
+
     comment = get_object_or_404(Comment, id=pk)
     recipe_obj = get_object_or_404(Recipe, title=recipe)
 
@@ -155,9 +161,10 @@ def deleteComment(request, pk, recipe):
     # Delete function returns the user back to the recipe page they came from
     if request.method == 'POST':
         comment.delete()
-        return redirect(reverse('recipe', kwargs={'title':recipe_obj}))
+        return redirect(reverse('recipe', kwargs={'title': recipe_obj}))
 
     return render(request, 'home/delete.html', {'selected_object': comment})
+
 
 @login_required(login_url='login')
 def updateUser(request):
@@ -175,6 +182,7 @@ def updateUser(request):
 
     context = {'form': form}
     return render(request, 'home/update_user.html', context)
+
 
 def handler404(request, exception, template_name="404.html"):
     response = render_to_response(template_name)
