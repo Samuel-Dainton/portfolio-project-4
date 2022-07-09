@@ -17,7 +17,7 @@ class UserProfile(models.Model):
     bio = models.CharField(max_length=400, blank=True, null=True)
 
     # thirdparty
-    # avatar = CloudinaryField('image', blank=True, null=True, default="v1656845904/chef_dvaqcl.png")
+    avatar = CloudinaryField('image', blank=True, null=True, default="v1656845904/chef_dvaqcl.png")
 
 
 class Topic(models.Model):
