@@ -230,7 +230,10 @@
         </div>
     </div>
 </section>
+<!--Disables the use of the 'Enter' button for comments. 
+    Changes navbar CSS to allow users on smaller screens to see more of the instructions.-->
 <script>
+
     var el = document.getElementById("comment-input");
     el.addEventListener("keypress", function (event) {
         if (event.key === "Enter") {
