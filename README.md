@@ -403,7 +403,7 @@ When deploying a live version of the site, remember to change the debug mode to 
 ### **Resources**
  
 Other resources that I used for my learning include
-- [Code Institute Course Content](https://courses.codeinstitute.net/) - Code fundamental learning platform
+- [Code Institute Course Content](https://courses.codeinstitute.net/)
 - [Stack Overflow](https://stackoverflow.com/)
 - [W3Schools](https://www.w3schools.com/)
 - [Django Documentation](https://www.djangoproject.com/)
