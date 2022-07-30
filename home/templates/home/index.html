@@ -62,7 +62,7 @@
         <div class="row height d-flex justify-content-center align-items-center">
             <div class="col-md-8">
                 <h4 class="text-center">Search our collection of {{recipe_count}} recipes!</h4>
-                <form method="GET" class="d-flex justify-content-center" action="{% url 'home' %}">
+                <form method="GET" class="d-flex justify-content-center" action="{% url 'home' %}#recipe-search">
                     <i class="fa fa-search search-icon"></i><input type="text" class="search-bar" name="q"
                         placeholder="Recipe, Ingredient, Catagory...">
                 </form>
