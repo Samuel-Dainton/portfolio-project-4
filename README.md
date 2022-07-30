@@ -155,6 +155,12 @@ I also used a slight hint of purple on the recipe cards just to give the user a 
 ### **Typography**
  
 To give the website a clean and professional look, I chose to use Alegreya and Gentium Book Plus from google fonts.
+
+
+### **Agile Project Goals**
+
+Using the project page in github I was able to keep track of what major goals I needed to reach as I progressed through the project.
+![Project Goals](readme/assets/goals.png)
  
  
 ## **FEATURES**
