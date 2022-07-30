@@ -44,6 +44,7 @@ I also asked my peers for their reviews on the website and made changes accordin
 Some of the feedback that I implemented:
 - The account button in the nav bar looked odd being a different shade to the other two nav buttons.
 - The search icon was a little small.
+- It would be better if the page loaded at the recipe list rather than the top of the page when searching/browsing.
 - A message should be displayed if a search returns nothing.
 - Navbar was a bit in the way when reading recipe instructions on smaller devices.
 

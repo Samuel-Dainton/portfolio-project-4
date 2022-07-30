@@ -43,6 +43,7 @@ Table of Contents - Click to Expand
 
 ## **STRATEGY**
 ---
+
 ### **Project Goals**
 
 - Develop a recipe website that allows users to share their own recipes and browse or search for new and inspiring recipes to expand their cooking knowledge
@@ -60,12 +61,14 @@ Table of Contents - Click to Expand
 
 
 ## **User Stories**
+---
 
 My user stories were broken up into categories based on whether the user is an Admin or if the user holds and account or not.
 
 ![Spreadsheet of User Stories](readme/assets/user-stories.png)
 
 ## **SCOPE**
+---
 
 ### **Production Feature Planning Table**
 
@@ -126,6 +129,7 @@ Through some trial and error, my final database looks as shown below.
 **Comments and Likes** - These last two models are related to the user and the recipe models to allow users to interact with recipes they enjoy.
 
 ## **SKELETON**
+---
 
 ### **Wireframes**
 
@@ -133,6 +137,7 @@ Through some trial and error, my final database looks as shown below.
 
 
 ## **Design Decisions**
+---
 
 Bootstrap provides a clean user-friendly appearance to the website which is easy to customise for the situation using its extensive supporting documentation and was used througout the project.
 
@@ -174,7 +179,7 @@ This is a full, page by page, breakdown of all the features & elements that have
 
 **Home Page**
 - Carousel - The carousel displays 3 rotating images that welcome the user and direct them to interact with different areas of the site. This can be used later to promote new features of the site as they are added
-- Search Bar and Catagories - Filters the list of recipes displayed on the home page to the users inputs. I hope to improve these in the future features once I learn Ajax so that the page stays where it is when using these features.
+- Search Bar and Catagories - Filters the list of recipes displayed on the home page to the users inputs. An anchor element is used so that urls are directed to it when a user attempts to search/browse, thus loading the page at the filtered list of recipes rather than the top of the page.
 - Recipe Grid - Displays basic info of the recipes in the order of most recently created. If the user is the author of the recipe it instead shows buttons that the author can use to either update or delete their recipe
 - The recipe grid uses pagination, so if more than 12 recipes are listed then buttons will appear to seperate the next set of 12 recipes to another page
 
@@ -243,7 +248,7 @@ If you find any security flaws or issues please feel open to contact me, I do ho
 
 ### **Features for Future Releases**
 
-- Ajax implementation so page stays in place when searching/browsing
+- Ajax implementation so page loads fluidly when searching/browsing
 - Units and servings calculations
 - Filter recipes based on the users likes
 - Sort recipes by their number of likes
@@ -254,9 +259,11 @@ If you find any security flaws or issues please feel open to contact me, I do ho
 
 ## **TESTING**
 ---
+
 View the [Testing Document](readme/assets/TESTING.md)
 
 ## **BUGS AND ISSUES**
+---
 
 This is a table of the major bugs and issues that I experienced when building this project.
 
@@ -282,6 +289,7 @@ This is a table of the major bugs and issues that I experienced when building th
 
 ## **DEPLOYMENT**
 ---
+
 In order to deploy the project yourself both for the development and live versions of this project, images have been hosted using a cloudinary API and the database is stored through Heroku PostgreSQL. Changes will need to be made if you intend to use other hosting services.
 
 ### Local Deployment
@@ -339,6 +347,7 @@ When deploying a live version of the site, remember to change the debug mode to 
 
 ## **TECHNOLOGY USED**
 ---
+
 <details>
 <summary> Languages and Libraries</summary>
 
@@ -384,6 +393,7 @@ When deploying a live version of the site, remember to change the debug mode to 
 
 ## **CREDITS**
 ---
+
 - Much of the html was built, extending off of bootstrap [starter tempaltes](https://getbootstrap.com/docs/4.0/examples/). 
 - I followed a guide by Alice Campkin to style my ManyToMany fields into radio buttons found [here](https://medium.com/swlh/django-forms-for-many-to-many-fields-d977dec4b024)
 - A lot of my learning and understanding of the backend was guided by videos from [Coding Entrepreneurs](https://www.youtube.com/c/CodingEntrepreneurs) and [Dennis Ivy](https://www.youtube.com/c/dennisivy)
