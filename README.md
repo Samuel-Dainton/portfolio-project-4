@@ -382,11 +382,12 @@ When deploying a live version of the site, remember to change the debug mode to 
  
 - [JavaScript Validator](https://beautifytools.com/javascript-validator.php) - Validating JS code
 - [Am I Responsive?](http://ami.responsivedesign.is/) - Webpage Breakpoint visualizer and image generator
-- [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/)
-- [Chrome Dev Tools](https://developer.chrome.com/docs/devtools/)
-- [Lighthouse](https://developers.google.com/web/tools/lighthouse)
-- [pylint](https://pylint.org/)
-- [Pep8](http://pep8online.com/)
+- [W3C HTML Validation Service](https://validator.w3.org/) - HTML Validation
+- [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/) - CSS Validation
+- [Chrome Dev Tools](https://developer.chrome.com/docs/devtools/) - Responsive design, error visualisation, webpage breakpoints and more
+- [Lighthouse](https://developers.google.com/web/tools/lighthouse) - Performance, Best Practice, Accessibility and SEO testing
+- [pylint](https://pypi.org/project/pylint/) - Static code validation for python
+- [Pep8](http://pep8online.com/) - Multi type code validation
 </details>
  
 <br>
